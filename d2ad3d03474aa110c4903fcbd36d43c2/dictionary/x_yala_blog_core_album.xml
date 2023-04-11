@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Album" max_length="40" name="x_yala_blog_core_album" type="collection">
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Artist" max_length="32" name="artist" reference="x_yala_blog_core_artist" type="reference"/>
+        <element label="Id" max_length="250" name="correlation_id" type="string"/>
+        <element label="Name" max_length="250" name="name" type="string"/>
+        <index name="index">
+            <element name="artist"/>
+        </index>
+    </element>
+</database>
