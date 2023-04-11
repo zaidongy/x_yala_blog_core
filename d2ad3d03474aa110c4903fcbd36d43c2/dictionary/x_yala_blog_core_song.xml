@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Song" max_length="40" name="x_yala_blog_core_song" type="collection">
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Album" max_length="32" name="album" reference="x_yala_blog_core_album" type="reference"/>
+        <element label="Id" max_length="250" name="correlation_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Duration" max_length="40" name="duration" type="glide_duration"/>
+        <element label="Name" max_length="250" name="name" type="string"/>
+        <index name="index">
+            <element name="album"/>
+        </index>
+    </element>
+</database>
