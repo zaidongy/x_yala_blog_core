@@ -59,7 +59,7 @@
         var answer = false;
         var record = new GlideRecord(current.getTableName());
         if(record.get(current.sys_id)){
-            answer = record.state == 'error' || record.state == 'cancelled';
+            answer = record.state == 'error' || record.state == 'cancelled' || record.state == "rate_limit_paused";
         }
 
         return answer;
@@ -74,8 +74,7 @@
 				record.log = "[INFO] " + msg;
 				record.update();
             } else if (type == "ERROR") {
-                recprd.state = 'error';
-                record.update();
+                record.state = 'error';
                 record.log = "[ERROR] An error has occured! Please review system logs. Additional info:\n\n" + msg;
                 record.update();
             } else if (type == 'ARTIST') {
@@ -90,6 +89,15 @@
                 var trackCount = parseInt(record.getValue('track_count') || 0) + count;
                 record.track_count = trackCount;
                 record.update();
+            } else if(type == "RATE_LIMIT_PAUSE"){
+                var data = JSON.parse(msg);
+                var pausedUntil = new GlideDateTime();
+                pausedUntil.addSeconds(data.retryAfter);
+                record.paused_until = pausedUntil;
+                record.log = msg;
+                record.state = 'rate_limit_paused';
+                record.update();
+                gs.eventQueueScheduled('x_yala_blog_core.queue_paused_loader', record, null, null, pausedUntil);
             }
         }
 
@@ -103,7 +111,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e702dac71b4ea1101272624abc4bcb93</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_name>Execute import!</sys_name>
         <sys_overrides/>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
@@ -111,7 +119,7 @@
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
         <sys_update_name>sys_script_e702dac71b4ea1101272624abc4bcb93</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-04-13 03:14:11</sys_updated_on>
+        <sys_updated_on>2023-04-13 14:50:07</sys_updated_on>
         <template/>
         <when>async_always</when>
     </sys_script>

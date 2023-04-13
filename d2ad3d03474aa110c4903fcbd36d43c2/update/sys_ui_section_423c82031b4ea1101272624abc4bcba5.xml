@@ -3,29 +3,29 @@
         <sys_ui_annotation action="INSERT_OR_UPDATE">
             <is_plain_text>false</is_plain_text>
             <sys_created_by>nate.anderson</sys_created_by>
-            <sys_created_on>2023-04-12 18:51:12</sys_created_on>
-            <sys_id>ddcbf7df1b4225101272624abc4bcbf3</sys_id>
+            <sys_created_on>2023-04-13 14:26:55</sys_created_on>
+            <sys_id>fbd8803787ca251010aa848e8bbb356f</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_updated_by>nate.anderson</sys_updated_by>
-            <sys_updated_on>2023-04-12 18:51:12</sys_updated_on>
-            <text>&lt;h1&gt;What is Imported?&lt;/h1&gt;
-&lt;p&gt;Due to how the Spotify API Works, we *Search* for Artists in an extremely basic way. Searching each letter in the alphabet, paging through the results up to the maximum from the API (1000), then move onto the next letter, from "A" to "ZZ". &lt;strong&gt;What does this mean?&lt;/strong&gt; It means that there is a high likelihood that 2 executions of this data loader, will absolutely load different artists, albums, and ultimately, tracks each execution (though it will also include many of the same).&lt;/p&gt;
-
-&lt;p&gt;Then we import all album for each artist.&lt;/p&gt;
+            <sys_updated_on>2023-04-13 14:26:55</sys_updated_on>
+            <text>&lt;h1&gt;What is Imported?&lt;/h1&gt;&#13;
+&lt;p&gt;Due to how the Spotify API Works, we *Search* for Artists in an extremely basic way. Searching each letter in the alphabet, paging through the results up to the maximum from the API (1000), then move onto the next letter, from "A" to "ZZ". &lt;strong&gt;What does this mean?&lt;/strong&gt; It means that there is a high likelihood that 2 executions of this data loader, will absolutely load different artists, albums, and ultimately, tracks each execution (though it will also include many of the same).&lt;/p&gt;&#13;
+&#13;
+&lt;p&gt;Then we import all album for each artist.&lt;/p&gt;&#13;
 &lt;p&gt;Last we get all songs for each album&lt;/p&gt;</text>
             <type display_value="Info Box Blue">753f88a80f930000b12e6903cfe01206</type>
         </sys_ui_annotation>
         <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>ddcbf7df1b4225101272624abc4bcbf3</element>
+            <element>fbd8803787ca251010aa848e8bbb356f</element>
             <position>0</position>
             <sys_created_by>nate.anderson</sys_created_by>
-            <sys_created_on>2023-04-12 18:51:13</sys_created_on>
-            <sys_id>a1cb3bdf1b4225101272624abc4bcb49</sys_id>
+            <sys_created_on>2023-04-13 14:26:55</sys_created_on>
+            <sys_id>3bd8803787ca251010aa848e8bbb3574</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
             <sys_updated_by>nate.anderson</sys_updated_by>
-            <sys_updated_on>2023-04-12 18:51:13</sys_updated_on>
+            <sys_updated_on>2023-04-13 14:26:55</sys_updated_on>
             <sys_user/>
             <type>annotation</type>
         </sys_ui_element>
@@ -33,13 +33,13 @@
             <element>.begin_split</element>
             <position>1</position>
             <sys_created_by>nate.anderson</sys_created_by>
-            <sys_created_on>2023-04-12 18:51:13</sys_created_on>
-            <sys_id>29cb3bdf1b4225101272624abc4bcb49</sys_id>
+            <sys_created_on>2023-04-13 14:26:55</sys_created_on>
+            <sys_id>bbd8803787ca251010aa848e8bbb3574</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
             <sys_updated_by>nate.anderson</sys_updated_by>
-            <sys_updated_on>2023-04-12 18:51:13</sys_updated_on>
+            <sys_updated_on>2023-04-13 14:26:55</sys_updated_on>
             <sys_user/>
             <type>.begin_split</type>
         </sys_ui_element>
@@ -47,69 +47,83 @@
             <element>number</element>
             <position>2</position>
             <sys_created_by>nate.anderson</sys_created_by>
-            <sys_created_on>2023-04-12 18:51:13</sys_created_on>
-            <sys_id>a9cb3bdf1b4225101272624abc4bcb49</sys_id>
+            <sys_created_on>2023-04-13 14:26:55</sys_created_on>
+            <sys_id>3fd8803787ca251010aa848e8bbb3574</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
             <sys_updated_by>nate.anderson</sys_updated_by>
-            <sys_updated_on>2023-04-12 18:51:13</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>.split</element>
-            <position>3</position>
-            <sys_created_by>nate.anderson</sys_created_by>
-            <sys_created_on>2023-04-12 18:51:13</sys_created_on>
-            <sys_id>2dcb3bdf1b4225101272624abc4bcb49</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
-            <sys_updated_by>nate.anderson</sys_updated_by>
-            <sys_updated_on>2023-04-12 18:51:13</sys_updated_on>
-            <sys_user/>
-            <type>.split</type>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>state</element>
-            <position>4</position>
-            <sys_created_by>nate.anderson</sys_created_by>
-            <sys_created_on>2023-04-12 18:51:13</sys_created_on>
-            <sys_id>adcb3bdf1b4225101272624abc4bcb49</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
-            <sys_updated_by>nate.anderson</sys_updated_by>
-            <sys_updated_on>2023-04-12 18:51:13</sys_updated_on>
+            <sys_updated_on>2023-04-13 14:26:55</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>data_to_load</element>
-            <position>5</position>
+            <position>3</position>
             <sys_created_by>nate.anderson</sys_created_by>
-            <sys_created_on>2023-04-12 18:51:13</sys_created_on>
-            <sys_id>21cb3bdf1b4225101272624abc4bcb4a</sys_id>
+            <sys_created_on>2023-04-13 14:26:55</sys_created_on>
+            <sys_id>bfd8803787ca251010aa848e8bbb3574</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
             <sys_updated_by>nate.anderson</sys_updated_by>
-            <sys_updated_on>2023-04-12 18:51:13</sys_updated_on>
+            <sys_updated_on>2023-04-13 14:26:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>4</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-13 14:26:55</sys_created_on>
+            <sys_id>33d8803787ca251010aa848e8bbb3575</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-13 14:26:55</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>state</element>
+            <position>5</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-13 14:26:55</sys_created_on>
+            <sys_id>b3d8803787ca251010aa848e8bbb3575</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-13 14:26:55</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>paused_until</element>
+            <position>6</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-13 14:26:55</sys_created_on>
+            <sys_id>37d8803787ca251010aa848e8bbb3575</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-13 14:26:55</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>6</position>
+            <position>7</position>
             <sys_created_by>nate.anderson</sys_created_by>
-            <sys_created_on>2023-04-12 18:51:13</sys_created_on>
-            <sys_id>a1cb3bdf1b4225101272624abc4bcb4a</sys_id>
+            <sys_created_on>2023-04-13 14:26:55</sys_created_on>
+            <sys_id>b7d8803787ca251010aa848e8bbb3575</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
             <sys_updated_by>nate.anderson</sys_updated_by>
-            <sys_updated_on>2023-04-12 18:51:13</sys_updated_on>
+            <sys_updated_on>2023-04-13 14:26:55</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>

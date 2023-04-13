@@ -13,16 +13,18 @@
         <element label="Duration" max_length="40" name="duration" read_only="true" type="glide_duration"/>
         <element attributes="edge_encryption_enabled=true" label="End date" max_length="40" name="end_date" read_only="true" type="glide_date_time"/>
         <element attributes="edge_encryption_enabled=true" label="Log" max_length="4000" name="log" type="journal"/>
-        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Paused until" max_length="40" name="paused_until" type="glide_date_time"/>
         <element attributes="edge_encryption_enabled=true" label="Start date" max_length="40" name="start_date" read_only="true" type="glide_date_time"/>
         <element choice="3" default="pending" label="Status" max_length="40" name="state" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Pending" sequence="0" value="pending"/>
                 <element inactive_on_update="false" label="Queued" sequence="1" value="queued"/>
                 <element inactive_on_update="false" label="In Progress" sequence="2" value="in_progress"/>
-                <element inactive_on_update="false" label="Cancelled" sequence="3" value="cancelled"/>
-                <element inactive_on_update="false" label="Completed" sequence="3" value="completed"/>
-                <element inactive_on_update="false" label="Error" sequence="4" value="error"/>
+                <element inactive_on_update="false" label="Rate Limit - Paused" sequence="3" value="rate_limit_paused"/>
+                <element inactive_on_update="false" label="Completed" sequence="4" value="completed"/>
+                <element inactive_on_update="false" label="Error" sequence="5" value="error"/>
+                <element inactive_on_update="false" label="Cancelled" sequence="6" value="cancelled"/>
             </choice>
         </element>
         <element label="Track count" max_length="40" name="track_count" read_only="true" type="integer"/>
