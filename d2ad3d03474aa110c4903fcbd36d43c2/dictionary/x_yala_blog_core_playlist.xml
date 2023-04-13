@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Playlist" max_length="40" name="x_yala_blog_core_playlist" sizeclass="1" type="collection">
+        <element attributes="staticDependent=x_yala_blog_core_song" label="Track criteria" max_length="4000000" name="conditions" type="conditions"/>
+        <element label="Name" max_length="250" name="name" type="string"/>
+        <element default="javascript:gs.getUserID()" dynamic_default_value="2fd8e97bef3221002841f7f775c0fbc1" label="Owned by" max_length="32" name="owned_by" reference="sys_user" type="reference" use_dynamic_default="true"/>
+        <element label="Shared with" max_length="4000" name="shared_with" reference="sys_user" type="glide_list"/>
+        <element label="Track selection script" max_length="40000000" name="track_script" type="script_plain"/>
+        <element choice="3" default="Criteria" label="Type" max_length="40" name="type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Manual" sequence="0" value="Manual"/>
+                <element inactive_on_update="false" label="Scripted" sequence="1" value="Scripted"/>
+                <element inactive_on_update="false" label="Criteria" sequence="2" value="Criteria"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="owned_by"/>
+        </index>
+    </element>
+</database>

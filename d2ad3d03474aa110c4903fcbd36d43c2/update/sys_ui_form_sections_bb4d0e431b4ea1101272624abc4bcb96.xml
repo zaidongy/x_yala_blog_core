@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="bb4d0e431b4ea1101272624abc4bcb96" sys_domain="global" table="x_yala_blog_core_music_loader_job" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:10:06</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>ff4d0e431b4ea1101272624abc4bcb97</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_yala_blog_core_music_loader_job" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">bb4d0e431b4ea1101272624abc4bcb96</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">423c82031b4ea1101272624abc4bcba5</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:10:06</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:10:24</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>006dc6831b4ea1101272624abc4bcb14</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_yala_blog_core_music_loader_job" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">bb4d0e431b4ea1101272624abc4bcb96</sys_ui_form>
+            <sys_ui_section caption="Stats" display_value="Stats" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">cc6dc6831b4ea1101272624abc4bcb11</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:11:19</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:10:06</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>7b4d0e431b4ea1101272624abc4bcb99</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_yala_blog_core_music_loader_job" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">bb4d0e431b4ea1101272624abc4bcb96</sys_ui_form>
+            <sys_ui_section caption="Log" display_value="Log" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">3b4d0e431b4ea1101272624abc4bcb98</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:11:19</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_yala_blog_core_music_loader_job</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:10:06</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>bb4d0e431b4ea1101272624abc4bcb96</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_yala_blog_core_music_loader_job</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+            <sys_update_name>sys_ui_form_sections_bb4d0e431b4ea1101272624abc4bcb96</sys_update_name>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:10:06</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

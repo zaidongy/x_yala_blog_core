@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity">
+    <oauth_entity action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <access_token_lifespan>1800</access_token_lifespan>
+        <active>true</active>
+        <auth_code_lifespan>0</auth_code_lifespan>
+        <auth_url>https://accounts.spotify.com/authorize</auth_url>
+        <certificate_url/>
+        <client_id>a991cac6dcdd4a47b77ff465d8a89cef</client_id>
+        <client_secret>﷞﷟﷒e1f3a958db702110bc86027ed39619fe﷬﷔1﷬﷭ceakocrfV3XDYs62couFug==BcVy07ThB2V9GJaY58z7dK5CYOyXuhoHpcCgb6QG1pymcuNnY77V8oAkkm_fJpHV﷮﷯</client_secret>
+        <client_uuid>785b1bc71b42e1101272624abc4bcb26</client_uuid>
+        <code_challenge_method>S256</code_challenge_method>
+        <comments/>
+        <default_grant_type>authorization_code</default_grant_type>
+        <id_token_lifespan>0</id_token_lifespan>
+        <logo_url/>
+        <message_signature_lifespan>0</message_signature_lifespan>
+        <name>Spotify</name>
+        <oauth_api_script/>
+        <protocol_name/>
+        <public_client>false</public_client>
+        <redirect_url>https://ven01806.service-now.com/oauth_redirect.do</redirect_url>
+        <refresh_token_lifespan>8640000</refresh_token_lifespan>
+        <refresh_token_url/>
+        <restricted_binding>false</restricted_binding>
+        <revoke_token_url/>
+        <salt>0</salt>
+        <send_client_credentials_as>request_body_parameter</send_client_credentials_as>
+        <skip_authorize>false</skip_authorize>
+        <sys_class_name>oauth_entity</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-11 21:52:49</sys_created_on>
+        <sys_id>f85b1bc71b42e1101272624abc4bcb26</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Spotify</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>oauth_entity_f85b1bc71b42e1101272624abc4bcb26</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-11 21:52:49</sys_updated_on>
+        <token_url>https://accounts.spotify.com/api/token</token_url>
+        <type>oauth_provider</type>
+        <use_mutual_auth>false</use_mutual_auth>
+        <user/>
+    </oauth_entity>
+</record_update>
