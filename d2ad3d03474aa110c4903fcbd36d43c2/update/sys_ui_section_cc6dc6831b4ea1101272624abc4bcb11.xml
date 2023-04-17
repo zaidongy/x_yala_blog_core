@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Stats" section_id="cc6dc6831b4ea1101272624abc4bcb11" sys_domain="global" table="x_yala_blog_core_music_loader_job" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:34:29</sys_created_on>
+            <sys_id>c1e25a0b1b4ea1101272624abc4bcb00</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stats" display_value="Stats" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">cc6dc6831b4ea1101272624abc4bcb11</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:34:29</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>start_date</element>
+            <position>1</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:34:29</sys_created_on>
+            <sys_id>49e25a0b1b4ea1101272624abc4bcb00</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stats" display_value="Stats" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">cc6dc6831b4ea1101272624abc4bcb11</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:34:29</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>end_date</element>
+            <position>2</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:34:29</sys_created_on>
+            <sys_id>c9e25a0b1b4ea1101272624abc4bcb00</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stats" display_value="Stats" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">cc6dc6831b4ea1101272624abc4bcb11</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:34:29</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>duration</element>
+            <position>3</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:34:29</sys_created_on>
+            <sys_id>4de25a0b1b4ea1101272624abc4bcb00</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stats" display_value="Stats" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">cc6dc6831b4ea1101272624abc4bcb11</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:34:29</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>4</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:34:29</sys_created_on>
+            <sys_id>cde25a0b1b4ea1101272624abc4bcb00</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stats" display_value="Stats" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">cc6dc6831b4ea1101272624abc4bcb11</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:34:29</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>artist_count</element>
+            <position>5</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:34:29</sys_created_on>
+            <sys_id>41e25a0b1b4ea1101272624abc4bcb01</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stats" display_value="Stats" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">cc6dc6831b4ea1101272624abc4bcb11</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:34:29</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>album_count</element>
+            <position>6</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:34:29</sys_created_on>
+            <sys_id>c1e25a0b1b4ea1101272624abc4bcb01</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stats" display_value="Stats" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">cc6dc6831b4ea1101272624abc4bcb11</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:34:29</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>track_count</element>
+            <position>7</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:34:29</sys_created_on>
+            <sys_id>45e25a0b1b4ea1101272624abc4bcb01</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stats" display_value="Stats" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">cc6dc6831b4ea1101272624abc4bcb11</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:34:29</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>8</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:34:29</sys_created_on>
+            <sys_id>c5e25a0b1b4ea1101272624abc4bcb01</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Stats" display_value="Stats" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">cc6dc6831b4ea1101272624abc4bcb11</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:34:29</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Stats</caption>
+            <header>false</header>
+            <name>x_yala_blog_core_music_loader_job</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:10:24</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>cc6dc6831b4ea1101272624abc4bcb11</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_yala_blog_core_music_loader_job</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+            <sys_update_name>sys_ui_section_cc6dc6831b4ea1101272624abc4bcb11</sys_update_name>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:10:24</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

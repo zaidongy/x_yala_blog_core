@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Playlist songs" max_length="40" name="x_yala_blog_core_m2m_songs_playlists" sizeclass="0" type="collection">
+        <element attributes="encode_utf8=false" label="Playlist" max_length="32" name="playlist" reference="x_yala_blog_core_playlist" type="reference"/>
+        <element attributes="encode_utf8=false" label="Song" max_length="32" name="song" reference="x_yala_blog_core_song" type="reference"/>
+        <index name="index">
+            <element name="song"/>
+        </index>
+        <index name="index2">
+            <element name="playlist"/>
+        </index>
+    </element>
+</database>

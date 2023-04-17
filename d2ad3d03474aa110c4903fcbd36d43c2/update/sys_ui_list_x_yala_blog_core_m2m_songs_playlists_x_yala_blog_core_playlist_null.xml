@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="x_yala_blog_core_playlist" relationship="" sys_domain="global" table="x_yala_blog_core_m2m_songs_playlists" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>playlist</element>
+            <list_id display_value="x_yala_blog_core_m2m_songs_playlists" element="NULL" name="x_yala_blog_core_m2m_songs_playlists" parent="x_yala_blog_core_playlist" relationship="NULL" sys_domain="global" view="Default view">6214f92f1b0a25101272624abc4bcb63</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-13 03:36:56</sys_created_on>
+            <sys_id>2e14f92f1b0a25101272624abc4bcb63</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-13 03:36:56</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>song</element>
+            <list_id display_value="x_yala_blog_core_m2m_songs_playlists" element="NULL" name="x_yala_blog_core_m2m_songs_playlists" parent="x_yala_blog_core_playlist" relationship="NULL" sys_domain="global" view="Default view">6214f92f1b0a25101272624abc4bcb63</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-13 03:36:56</sys_created_on>
+            <sys_id>ae14f92f1b0a25101272624abc4bcb63</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-13 03:36:56</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>song.album</element>
+            <list_id display_value="x_yala_blog_core_m2m_songs_playlists" element="NULL" name="x_yala_blog_core_m2m_songs_playlists" parent="x_yala_blog_core_playlist" relationship="NULL" sys_domain="global" view="Default view">6214f92f1b0a25101272624abc4bcb63</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-13 03:36:56</sys_created_on>
+            <sys_id>2214f92f1b0a25101272624abc4bcb64</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-13 03:36:56</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>song.album.artist</element>
+            <list_id display_value="x_yala_blog_core_m2m_songs_playlists" element="NULL" name="x_yala_blog_core_m2m_songs_playlists" parent="x_yala_blog_core_playlist" relationship="NULL" sys_domain="global" view="Default view">6214f92f1b0a25101272624abc4bcb63</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-13 03:36:56</sys_created_on>
+            <sys_id>a214f92f1b0a25101272624abc4bcb64</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-13 03:36:56</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>song.duration</element>
+            <list_id display_value="x_yala_blog_core_m2m_songs_playlists" element="NULL" name="x_yala_blog_core_m2m_songs_playlists" parent="x_yala_blog_core_playlist" relationship="NULL" sys_domain="global" view="Default view">6214f92f1b0a25101272624abc4bcb63</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-13 03:36:56</sys_created_on>
+            <sys_id>2614f92f1b0a25101272624abc4bcb64</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-13 03:36:56</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>x_yala_blog_core_m2m_songs_playlists</name>
+            <parent>x_yala_blog_core_playlist</parent>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-13 03:36:56</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>6214f92f1b0a25101272624abc4bcb63</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_yala_blog_core_m2m_songs_playlists</sys_name>
+            <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+            <sys_update_name>sys_ui_list_x_yala_blog_core_m2m_songs_playlists_x_yala_blog_core_playlist_null</sys_update_name>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-13 03:36:56</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>
