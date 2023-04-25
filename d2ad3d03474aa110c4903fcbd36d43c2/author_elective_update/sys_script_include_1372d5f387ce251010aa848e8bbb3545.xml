@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_yala_blog_core.PlaylistBlacklist</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Implements extension point x_yala_blog_core.PlaylistBlacklist</description>
+        <name>PlaylistBlacklist</name>
+        <script><![CDATA[var PlaylistBlacklist = Class.create();
+PlaylistBlacklist.prototype = {
+    initialize: function() {
+    },
+	
+	appliesTo: function(playlist){
+		//does this apply to the play list and should it be evaluated?
+		return false;
+	},
+
+    getBlacklist: function(playlist) {
+		//A list of sys_ids to always exclude from playlists
+        var songSysIds = ['sys_ids_of_songs_here'];
+		return songSysIds;
+    },
+
+    type: 'PlaylistBlacklist'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-13 19:48:34</sys_created_on>
+        <sys_id>1372d5f387ce251010aa848e8bbb3545</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>PlaylistBlacklist</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>sys_script_include_1372d5f387ce251010aa848e8bbb3545</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-13 19:56:12</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</application>
+        <file_path/>
+        <instance_id>a511f549db16a200439ed70fbf9619eb</instance_id>
+        <instance_name>ven01806</instance_name>
+        <name>sys_script_include_1372d5f387ce251010aa848e8bbb3545</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_yala_blog_core.PlaylistBlacklist&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description&gt;Implements extension point x_yala_blog_core.PlaylistBlacklist&lt;/description&gt;&lt;name&gt;PlaylistBlacklist&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var PlaylistBlacklist = Class.create();
+PlaylistBlacklist.prototype = {
+    initialize: function() {
+    },
+	
+	appliesTo: function(playlist){
+		//does this apply to the play list and should it be evaluated?
+		return false;
+	},
+
+    getBlacklist: function(playlist) {
+		//A list of sys_ids to always exclude from playlists
+        var songSysIds = ['sys_ids_of_songs_here'];
+		return songSysIds;
+    },
+
+    type: 'PlaylistBlacklist'
+};]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;nate.anderson&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2023-04-13 19:48:34&lt;/sys_created_on&gt;&lt;sys_id&gt;1372d5f387ce251010aa848e8bbb3545&lt;/sys_id&gt;&lt;sys_mod_count&gt;2&lt;/sys_mod_count&gt;&lt;sys_name&gt;PlaylistBlacklist&lt;/sys_name&gt;&lt;sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core"&gt;d2ad3d03474aa110c4903fcbd36d43c2&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Yansa Blog - CORE"&gt;d2ad3d03474aa110c4903fcbd36d43c2&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_1372d5f387ce251010aa848e8bbb3545&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;nate.anderson&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2023-04-13 19:56:12&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1139369923</payload_hash>
+        <record_name>PlaylistBlacklist</record_name>
+        <reverted_from/>
+        <source>88fff9071b0ea1101272624abc4bcb2f</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-13 19:56:12</sys_created_on>
+        <sys_id>9334d5b787ce251010aa848e8bbb354e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1877c309ab40000001</sys_recorded_at>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-13 19:56:12</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>1b34d5b702ce2510cb3348a83c70364d</update_guid>
+        <update_guid_history>1b34d5b702ce2510cb3348a83c70364d:1139369923,90d2d5f3d6ce2510c27daac1f3f5fe3d:1739898232,df72d5f3d2ce2510f744069736ed8446:1896930972</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-18 15:59:41</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>1cb3631acd1842a4857ba6367781d3d9</sys_id>
+        <sys_metadata>1372d5f387ce251010aa848e8bbb3545</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>PlaylistBlacklist</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_scope_delete display_value="">0a4c715f42a64ff68a6d3423dffa9864</sys_scope_delete>
+        <sys_update_name>sys_script_include_1372d5f387ce251010aa848e8bbb3545</sys_update_name>
+        <sys_update_version display_value="sys_script_include_1372d5f387ce251010aa848e8bbb3545">9334d5b787ce251010aa848e8bbb354e</sys_update_version>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-18 15:59:41</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

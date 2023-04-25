@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_script_action">
     <sysevent_script_action action="INSERT_OR_UPDATE">
-        <active>false</active>
+        <active>true</active>
         <condition_script/>
         <description/>
         <event_name>x_yala_blog_core.queue_paused_loader</event_name>
@@ -15,7 +15,7 @@ current.update();]]></script>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>d65a80b787ca251010aa848e8bbb35ee</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Re-Queue Paused Music Loader</sys_name>
         <sys_overrides/>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
@@ -23,6 +23,6 @@ current.update();]]></script>
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
         <sys_update_name>sysevent_script_action_d65a80b787ca251010aa848e8bbb35ee</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-04-13 14:33:54</sys_updated_on>
+        <sys_updated_on>2023-04-24 16:10:19</sys_updated_on>
     </sysevent_script_action>
 </record_update>

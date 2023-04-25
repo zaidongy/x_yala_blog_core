@@ -9,25 +9,6 @@
         <name>MusicDataGenerator</name>
         <script><![CDATA[var MusicDataGenerator = Class.create();
 MusicDataGenerator.prototype = {
-
-    _externalUpdateFuncWarningSent: [],
-    _haveBeenCancelledCheck: function () {
-    },
-    /**
-     * 
-     * @param {"ARTIST" | "ALBUM" | "TRACK" |"ERROR" | "INFO" | "RATE_LIMIT_PAUSE"} type the type of item being broadcast
-     * @param {number} count 
-     * @param {string} msg the message sent along mostly used for errors.
-     */
-    _externalUpdateFunc: function (type, count, msg) {
-        //this is where you can set / update your GlideRecord, or do other things...
-        //types will be "ARTIST" | "ALBUM" | "TRACK"
-        if (this._externalUpdateFuncWarningSent.indexOf(type) == -1) {
-            this._externalUpdateFuncWarningSent.push(type)
-            gs.warn('External updater func called with default, which does nothing. Consider passing in an updater func.');
-        }
-    },
-
     /**
      * Yansa logging library
      * 
@@ -64,7 +45,7 @@ MusicDataGenerator.prototype = {
         this.loadArtists();
         this.loadAlbums();
         this.loadSongs();
-        this._externalUpdateFunc("INFO", 0, "Fininshed loading all")
+        this._externalUpdateFunc("LOAD_ALL_COMPLETE", 0, "Fininshed loading all")
     },
 
     loadSongs: function (forceRefresh) {
@@ -104,6 +85,9 @@ MusicDataGenerator.prototype = {
             albums.update();
         }
 
+        this._externalUpdateFunc("COMPLETE", 0, "Completed loading tracks for all albums.");
+
+
     },
 
     /**
@@ -133,7 +117,7 @@ MusicDataGenerator.prototype = {
         var status = resp.getStatusCode();
         if (status != 200) {
             if (resp.getBody().indexOf('Too many requests') > -1) {
-                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: resp.getHeader('Retry-After') }));                return items;
+                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: resp.getHeader('Retry-After') })); return items;
             } else {
                 this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody() }));
             }
@@ -187,6 +171,7 @@ MusicDataGenerator.prototype = {
             artists.update();
             this._externalUpdateFunc("ALBUM", albums.length)
         }
+        this._externalUpdateFunc("COMPLETE", 0, "Completed loading Albums for all Artists.");
 
     },
 
@@ -253,17 +238,22 @@ MusicDataGenerator.prototype = {
                 var artistGR = new GlideRecord('x_yala_blog_core_artist');
                 artistGR.addQuery('correlation_id', artist.id);
                 artistGR.query();
-                if (!artistGR.next()) {
+                if (!artistGR.hasNext()) {
                     artistGR.newRecord();
                     artistGR.name = artist.name;
                     artistGR.correlation_id = artist.id;
                     artistGR.insert();
+                } else if (artistGR.next()) {
+                    artistGR.name = artist.name;
+                    artistGR.correlation_id = artist.id;
+                    artistGR.update();
                 }
             });
 
             this._externalUpdateFunc("ARTIST", artists.length);
         }
-        this._externalUpdateFunc("INFO", 0, "Finished Loading Artists");
+        this._externalUpdateFunc("COMPLETE", 0, "Finished Loading all Artists.");
+
     },
 
     /**
@@ -298,9 +288,9 @@ MusicDataGenerator.prototype = {
         var resp = rMsg.execute();
         var status = resp.getStatusCode();
         if (status != 200) {
-            
+
             if (resp.getBody().indexOf('Too many requests') > -1) {
-                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: resp.getHeader('Retry-After') }));                return items;
+                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: resp.getHeader('Retry-After') })); return items;
             } else {
                 this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody() }));
             }
@@ -325,43 +315,84 @@ MusicDataGenerator.prototype = {
     getAccessToken: function () {
         var accessToken = ''
         try {
-            var oAuthClient = new sn_auth.GlideOAuthClient();
-            var token = oAuthClient.getToken('f44691228721651010aa848e8bbb355b', '84cb9b071b42e1101272624abc4bcb85');
-            var expiresIn = token.getExpiresIn();
-            if (expiresIn === 0) {
-                this._externalUpdateFunc("INFO", 0, "Token expired, getting a new one!");
-                var refreshToken = token.getRefreshToken();
-                var tResp = oAuthClient.requestToken('Spotify', JSON.stringify({ grant_type: "refresh_token", refresh_token: refreshToken }));
-                token = tResp.getToken();
-                var tokenGR = new GlideRecord('oauth_credential');
-                tokenGR.addQuery('peer', 'f85b1bc71b42e1101272624abc4bcb26');
-                tokenGR.query();
-                while (tokenGR.next()) {
-                    if (tokenGR.type == 'refresh_token') {
-                        var refreshGDT = new GlideDateTime();
-                        refreshGDT.addSeconds(tokenGR.peer.refresh_token_lifespan + '');
-                        tokenGR.expires = refreshGDT;
-                        tokenGR.token_received.setDisplayValue(token.getAccessToken() + '');
-                        tokenGR.update();
+            var foundTokenTypes = [];
+            var requestorProf = new GlideRecord('oauth_requestor_profile');
+            requestorProf.addQuery('oauth_entity_profile.oauth_entity.auth_url', 'https://accounts.spotify.com/authorize');
+            requestorProf.addQuery('oauth_entity_profile.oauth_entity.active', true);
+            requestorProf.query();
+            if (requestorProf.next()) {
+                gs.info('Found requestor profile: ' + requestorProf.getUniqueValue());
+                var oAuthClient = new sn_auth.GlideOAuthClient();
+
+                var token = oAuthClient.getToken(requestorProf.getValue('requestor_id'), requestorProf.getValue('oauth_entity_profile'));
+                var expiresIn = token.getExpiresIn();
+                if (expiresIn === 0) {
+                    this._externalUpdateFunc("INFO", 0, "Token expired, getting a new one!");
+                    var refreshToken = token.getRefreshToken();
+                    var tResp = oAuthClient.requestToken('Spotify', JSON.stringify({ grant_type: "refresh_token", refresh_token: refreshToken }));
+                    token = tResp.getToken();
+                    var tokenGR = new GlideRecord('oauth_credential');
+                    tokenGR.addQuery('oauth_requestor_profile', requestorProf.getValue('sys_id'));
+                    tokenGR.query();
+                    while (tokenGR.next()) {
+                        if (tokenGR.type == 'refresh_token') {
+                            foundTokenTypes.push('refresh_token');
+                            var refreshGDT = new GlideDateTime();
+                            refreshGDT.addSeconds(tokenGR.peer.refresh_token_lifespan + '');
+                            tokenGR.expires = refreshGDT;
+                            tokenGR.token_received.setDisplayValue(token.getAccessToken() + '');
+                            tokenGR.update();
+                        }
+
+                        if (tokenGR.type == 'access_token') {
+                            foundTokenTypes.push('access_token');
+                            var accessGDT = new GlideDateTime();
+                            accessGDT.addSeconds(token.getExpiresIn() + '');
+                            tokenGR.expires = accessGDT;
+                            tokenGR.token_received.setDisplayValue(token.getAccessToken() + '');
+                            tokenGR.update();
+                        }
                     }
 
-                    if (tokenGR.type == 'access_token') {
-                        var accessGDT = new GlideDateTime();
-                        accessGDT.addSeconds(token.getExpiresIn() + '');
-                        tokenGR.expires = accessGDT;
-                        tokenGR.token_received.setDisplayValue(token.getAccessToken() + '');
-                        tokenGR.update();
+                    if (foundTokenTypes.length != 2) {
+                        this._externalUpdateFunc("ERROR", 0, "Attempted to update stored oAuth tokens, but only found: " + foundTokenTypes + " . OAuth Errors may occure, aborting!");
                     }
+
+                    accessToken = token.getAccessToken() + '';
+                } else if (token) {
+                    accessToken = token.getAccessToken();
                 }
-            } else if (token) {
-                accessToken = token.getAccessToken();
+
             }
+
         } catch (e) {
             this._externalUpdateFunc("ERROR", 0, JSON.stringify(e));
         }
         return accessToken;
     },
 
+    //just store what types were called and not sent, and so we don't trigger it over and over gain
+
+    _externalUpdateFuncWarningSent: [],
+
+    //stup in a default function for havebennCancelled so we don't throw errors
+    _haveBeenCancelledCheck: function () {
+    },
+
+    /**
+     * 
+     * @param {"ARTIST" | "ALBUM" | "TRACK" |"ERROR" | "INFO" | "COMPLETE" | "LOAD_ALL_COMPLETE" | "RATE_LIMIT_PAUSE"} type the type of item being broadcast
+     * @param {number} count 
+     * @param {string} msg the message sent along mostly used for errors.
+     */
+    _externalUpdateFunc: function (type, count, msg) {
+        //this is where you can set / update your GlideRecord, or do other things...
+        //types will be "ARTIST" | "ALBUM" | "TRACK"
+        if (this._externalUpdateFuncWarningSent.indexOf(type) == -1) {
+            this._externalUpdateFuncWarningSent.push(type)
+            gs.warn('External updater func called with default, which does nothing. Consider passing in an updater func. Types that have triggered this: ' + this._externalUpdateFuncWarningSent + '. Recent msg was: ' + msg);
+        }
+    },
 
     type: 'MusicDataGenerator'
 };]]></script>
@@ -369,13 +400,13 @@ MusicDataGenerator.prototype = {
         <sys_created_by>nate.anderson</sys_created_by>
         <sys_created_on>2023-03-16 03:59:38</sys_created_on>
         <sys_id>77cffd071b0ea1101272624abc4bcb28</sys_id>
-        <sys_mod_count>71</sys_mod_count>
+        <sys_mod_count>87</sys_mod_count>
         <sys_name>MusicDataGenerator</sys_name>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
         <sys_update_name>sys_script_include_77cffd071b0ea1101272624abc4bcb28</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-04-13 15:39:19</sys_updated_on>
+        <sys_updated_on>2023-04-24 18:38:17</sys_updated_on>
     </sys_script_include>
 </record_update>

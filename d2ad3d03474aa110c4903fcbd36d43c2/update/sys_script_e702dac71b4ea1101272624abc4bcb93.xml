@@ -29,50 +29,61 @@
         <rest_service_text/>
         <rest_variables/>
         <role_conditions/>
-        <script><![CDATA[(function executeRule(current, previous /*null when async*/ ) {
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
 
     //NOTE: Other BRs are covering keeping from duplicate imports running..
 
     current.state = 'in_progress';
     current.update();
+
+    var loadAll = false;
+
     try {
         var mdg = new x_yala_blog_core.MusicDataGenerator();
         mdg.setExternalUpdaterFunc(updateCurrent);
         mdg.setHaveBeenCancelledCheck(haveBeenCancelled);
         var dataToLoad = current.getValue('data_to_load');
-        if(dataToLoad == 'All'){
+        if (dataToLoad == 'All') {
+            loadAll = true;
             mdg.loadAll();
-        } else if(dataToLoad == 'Artists'){
+        } else if (dataToLoad == 'Artists') {
             mdg.loadArtists();
-        } else if(dataToLoad == 'Albums'){
+        } else if (dataToLoad == 'Albums') {
             mdg.loadAlbums();
-        } else if(dataToLoad == 'Tracks'){
+        } else if (dataToLoad == 'Tracks') {
             mdg.loadSongs();
         }
-    } catch(e){
+    } catch (e) {
         current.state = 'error';
         current.log = JSON.stringify(e);
         current.update();
     }
 
-    function haveBeenCancelled(){
+    function haveBeenCancelled() {
         var answer = false;
         var record = new GlideRecord(current.getTableName());
-        if(record.get(current.sys_id)){
-            answer = record.state == 'error' || record.state == 'cancelled' || record.state == "rate_limit_paused";
+        if (record.get(current.sys_id)) {
+            answer = record.state == 'completed' || record.state == 'error' || record.state == 'cancelled' || record.state == "rate_limit_paused";
         }
 
         return answer;
     }
 
-    
+
 
     function updateCurrent(type, count, msg) {
         var record = new GlideRecord(current.getTableName());
         if (record.get(current.sys_id)) {
-            if (type == "INFO") {
-				record.log = "[INFO] " + msg;
-				record.update();
+            if (type.indexOf('COMPLETE') > -1) {
+                record.log = "[" + type + "] " + msg;
+                if (loadAll == false || (loadAll && type == "LOAD_ALL_COMPLETE")) {
+                    record.state = 'completed'
+                    kickOffNextPending();
+                }
+                record.update();
+            } else if (type == "INFO") {
+                record.log = "[INFO] " + msg;
+                record.update();
             } else if (type == "ERROR") {
                 record.state = 'error';
                 record.log = "[ERROR] An error has occured! Please review system logs. Additional info:\n\n" + msg;
@@ -89,7 +100,7 @@
                 var trackCount = parseInt(record.getValue('track_count') || 0) + count;
                 record.track_count = trackCount;
                 record.update();
-            } else if(type == "RATE_LIMIT_PAUSE"){
+            } else if (type == "RATE_LIMIT_PAUSE") {
                 var data = JSON.parse(msg);
                 var pausedUntil = new GlideDateTime();
                 pausedUntil.addSeconds(data.retryAfter);
@@ -100,7 +111,18 @@
                 gs.eventQueueScheduled('x_yala_blog_core.queue_paused_loader', record, null, null, pausedUntil);
             }
         }
+    }
 
+    function kickOffNextPending(){
+        var records = new GlideRecord(current.getTableName());
+        records.orderBy('number');
+        records.addQuery('sys_id', '!=', current.sys_id);
+        records.addQuery('state', 'pending');
+        records.query();
+        if(records.next()){
+            records.state = 'queued';
+            records.update();
+        }
 
     }
 
@@ -111,7 +133,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e702dac71b4ea1101272624abc4bcb93</sys_id>
-        <sys_mod_count>24</sys_mod_count>
+        <sys_mod_count>30</sys_mod_count>
         <sys_name>Execute import!</sys_name>
         <sys_overrides/>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
@@ -119,7 +141,7 @@
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
         <sys_update_name>sys_script_e702dac71b4ea1101272624abc4bcb93</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-04-13 14:50:07</sys_updated_on>
+        <sys_updated_on>2023-04-24 16:47:25</sys_updated_on>
         <template/>
         <when>async_always</when>
     </sys_script>
