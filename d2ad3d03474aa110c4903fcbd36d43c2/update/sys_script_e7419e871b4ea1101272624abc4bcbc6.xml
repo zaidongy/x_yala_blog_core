@@ -34,7 +34,7 @@
 	//other item in progress or queued? Put back to pending...
 	var otherItems = new GlideRecord(current.getTableName());
 	otherItems.addQuery('sys_id', '!=', current.sys_id);
-	otherItems.addQuery('state', 'IN', 'queued,in_progress');
+	otherItems.addQuery('state', 'IN', 'queued,in_progress,rate_limit_paused');
 	otherItems.query();
 	if(otherItems.hasNext()){
 		current.state = 'pending';
@@ -47,7 +47,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e7419e871b4ea1101272624abc4bcbc6</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Back to pending for you!</sys_name>
         <sys_overrides/>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
@@ -55,7 +55,7 @@
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
         <sys_update_name>sys_script_e7419e871b4ea1101272624abc4bcbc6</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-04-11 16:29:37</sys_updated_on>
+        <sys_updated_on>2023-04-26 18:59:59</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_rl_action">
+    <sys_ui_policy_rl_action action="INSERT_OR_UPDATE">
+        <list>REL:bb94f16f1b0a25101272624abc4bcbf2</list>
+        <sys_class_name>sys_ui_policy_rl_action</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-05-04 03:33:52</sys_created_on>
+        <sys_id>a0ccf5928762a95010aa848e8bbb3593</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>REL:bb94f16f1b0a25101272624abc4bcbf2</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>sys_ui_policy_rl_action_a0ccf5928762a95010aa848e8bbb3593</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-05-04 03:33:52</sys_updated_on>
+        <ui_policy display_value="Hide Custom Relationship Related List: Condition/Scripted">4aac75928762a95010aa848e8bbb35bc</ui_policy>
+        <visible>true</visible>
+    </sys_ui_policy_rl_action>
+</record_update>

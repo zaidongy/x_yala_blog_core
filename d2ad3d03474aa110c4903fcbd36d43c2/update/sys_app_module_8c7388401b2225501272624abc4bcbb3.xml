@@ -5,7 +5,9 @@
         <assessment/>
         <content_page/>
         <device_type/>
-        <filter/>
+        <filter table="x_yala_blog_core_music_loader_job">stateINerror,cancelled^EQ<item display_value="error,cancelled" endquery="false" field="state" goto="false" newquery="false" operator="IN" or="false" value="error,cancelled"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter>
         <hint/>
         <homepage/>
         <image/>
@@ -14,28 +16,28 @@
         <mobile_title>Music Loaders</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name>x_yala_blog_core_music_loader_job</name>
-        <order>9100</order>
+        <order>9095</order>
         <override_menu_roles>false</override_menu_roles>
         <query/>
         <report/>
         <roles>x_yala_blog_core.admin</roles>
         <sys_class_name>sys_app_module</sys_class_name>
         <sys_created_by>nate.anderson</sys_created_by>
-        <sys_created_on>2023-04-11 16:05:01</sys_created_on>
+        <sys_created_on>2023-04-26 18:57:21</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>0d2c86431b4ea1101272624abc4bcbeb</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>All</sys_name>
+        <sys_id>8c7388401b2225501272624abc4bcbb3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Errored</sys_name>
         <sys_overrides/>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
         <sys_policy/>
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
-        <sys_update_name>sys_app_module_0d2c86431b4ea1101272624abc4bcbeb</sys_update_name>
+        <sys_update_name>sys_app_module_8c7388401b2225501272624abc4bcbb3</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-04-25 20:48:39</sys_updated_on>
+        <sys_updated_on>2023-04-26 18:57:21</sys_updated_on>
         <timeline_page/>
-        <title>All</title>
+        <title>Errored</title>
         <uncancelable>false</uncancelable>
         <view_name/>
         <window_name/>
