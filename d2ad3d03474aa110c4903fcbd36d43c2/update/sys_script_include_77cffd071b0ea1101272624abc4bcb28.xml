@@ -2,13 +2,16 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_yala_blog_core.MusicDataGenerator</api_name>
+        <api_name>x_yala_blog_core.MusicDataGenerator_APP</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description/>
-        <name>MusicDataGenerator</name>
-        <script><![CDATA[var MusicDataGenerator = Class.create();
-MusicDataGenerator.prototype = {
+        <description>Script include for making API Calls to spotify to generate Artist, Album, and Track Data</description>
+        <name>MusicDataGenerator_APP</name>
+        <script><![CDATA[var MusicDataGenerator_APP = Class.create();
+MusicDataGenerator_APP.prototype = {
+
+    refreshTokenForSession: undefined,
+
     /**
      * Yansa logging library
      * 
@@ -23,7 +26,9 @@ MusicDataGenerator.prototype = {
         if (func) {
             this._haveBeenCancelledCheck = func;
         } else {
-            this._haveBeenCancelledCheck = function () { };
+            this._haveBeenCancelledCheck = function () {
+                return false;
+            };
         }
 
     },
@@ -56,8 +61,9 @@ MusicDataGenerator.prototype = {
         }
         albums.query();
         while (albums.next()) {
-            if (this.haveBeenCancelledCheck()) {
-                this._externalUpdateFunc("INFO", 0, "LOADER WAS CANCELLED! ABORTING!");
+            var cancelledResult = this._haveBeenCancelledCheck()
+            if (cancelledResult) {
+                this._externalUpdateFunc("INFO", 0, "LOADER WAS " + cancelledResult + " ! ABORTING!");
                 break;
             }
             var tracks = this.getAllTracks(albums.getValue('correlation_id'));
@@ -102,6 +108,11 @@ MusicDataGenerator.prototype = {
             items = [];
         }
 
+        var cancelledResult = this._haveBeenCancelledCheck()
+        if (cancelledResult) {
+            return items;
+        }
+
         var rMsg = new sn_ws.RESTMessageV2();
         rMsg.setHttpMethod('GET');
         rMsg.setRequestHeader('Authorization', 'Bearer ' + this.getAccessToken());
@@ -116,10 +127,23 @@ MusicDataGenerator.prototype = {
         var resp = rMsg.execute();
         var status = resp.getStatusCode();
         if (status != 200) {
-            if (resp.getBody().indexOf('Too many requests') > -1) {
-                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: resp.getHeader('Retry-After') })); return items;
+            if(status == 404){
+                var body = resp.getBody();
+                var logError = true;
+                if(body){
+                    var bodyObj = JSON.parse(body);
+                    if(bodyObj.message.indexOf('Non existing id:') === -1){
+                        logError = false;
+                    }
+                }
+                if(logError){
+                    this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), headers: resp.getHeaders() }));
+                }
+            } else if (status == 429 || status == 500) {
+                var retryAfter = resp.getHeader('Retry-After') || 20;
+                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: retryAfter }));
             } else {
-                this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody() }));
+                this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), headers: resp.getHeaders() }));
             }
             return items;
         } else {
@@ -145,8 +169,9 @@ MusicDataGenerator.prototype = {
         }
         artists.query();
         while (artists.next()) {
-            if (this.haveBeenCancelledCheck()) {
-                this._externalUpdateFunc("INFO", 0, "LOADER WAS CANCELLED! ABORTING!");
+            var cancelledResult = this._haveBeenCancelledCheck()
+            if (cancelledResult) {
+                this._externalUpdateFunc("INFO", 0, "LOADER WAS " + cancelledResult + " ! ABORTING!");
                 break;
             }
             var albums = this.getAllAlbums(artists.getValue('correlation_id'));
@@ -187,6 +212,10 @@ MusicDataGenerator.prototype = {
         if (!items) {
             items = [];
         }
+        var cancelledResult = this._haveBeenCancelledCheck()
+        if (cancelledResult) {
+            return items;
+        }
 
         var rMsg = new sn_ws.RESTMessageV2();
         rMsg.setHttpMethod('GET');
@@ -202,11 +231,23 @@ MusicDataGenerator.prototype = {
         var resp = rMsg.execute();
         var status = resp.getStatusCode();
         if (status != 200) {
-            if (resp.getBody().indexOf('Too many requests') > -1) {
-                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: resp.getHeader('Retry-After') }));
-                return this.getAllAlbums(artistId, nextURL, items);
+            if(status == 404){
+                var body = resp.getBody();
+                var logError = true;
+                if(body){
+                    var bodyObj = JSON.parse(body);
+                    if(bodyObj.message.indexOf('Non existing id:') === -1){
+                        logError = false;
+                    }
+                }
+                if(logError){
+                    this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), headers: resp.getHeaders() }));
+                }
+            } else if (status == 429 || status == 500) {
+                var retryAfter = resp.getHeader('Retry-After') || 20;
+                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: retryAfter }));
             } else {
-                this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody() }));
+                this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), headers: resp.getHeaders() }));
             }
             return items;
         } else {
@@ -229,11 +270,13 @@ MusicDataGenerator.prototype = {
 
         for (var i = 0; i < maxCharacters; i++) {
             var character = (i + 10).toString(36);
-            var artists = this.searchToMaxAmount(character, 'artist');
-            if (this.haveBeenCancelledCheck()) {
-                this._externalUpdateFunc("INFO", 0, "LOADER WAS CANCELLED! ABORTING!");
+            var cancelledResult = this._haveBeenCancelledCheck()
+            if (cancelledResult) {
+                this._externalUpdateFunc("INFO", 0, "LOADER WAS " + cancelledResult + " ! ABORTING!");
                 break;
             }
+            var artists = this.searchToMaxAmount(character, 'artist');
+
             artists.forEach(function (artist) {
                 var artistGR = new GlideRecord('x_yala_blog_core_artist');
                 artistGR.addQuery('correlation_id', artist.id);
@@ -266,8 +309,10 @@ MusicDataGenerator.prototype = {
         if (!searchText) {
             throw new Error('No search text provided!');
         }
+        if (!this._haveBeenCancelledCheck()) {
+            var items = this.getSearchResults([], searchText, type);
+        }
 
-        var items = this.getSearchResults([], searchText, type);
 
         return items;
 
@@ -289,10 +334,11 @@ MusicDataGenerator.prototype = {
         var status = resp.getStatusCode();
         if (status != 200) {
 
-            if (resp.getBody().indexOf('Too many requests') > -1) {
-                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: resp.getHeader('Retry-After') })); return items;
+            if (status == 429 || status == 500) {
+                var retryAfter = resp.getHeader('Retry-After') || 20;
+                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: retryAfter }));
             } else {
-                this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody() }));
+                this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), headers: resp.getHeaders() }));
             }
             return items;
         } else {
@@ -325,40 +371,44 @@ MusicDataGenerator.prototype = {
                 var oAuthClient = new sn_auth.GlideOAuthClient();
 
                 var token = oAuthClient.getToken(requestorProf.getValue('requestor_id'), requestorProf.getValue('oauth_entity_profile'));
+                this.refreshTokenForSession = this.refreshTokenForSession || token.getRefreshToken();
+
+
+
                 var expiresIn = token.getExpiresIn();
-                if (expiresIn === 0) {
+                //if expiring in the next 60 seconds, get a new one.
+                if (expiresIn <= 60) {
+
                     this._externalUpdateFunc("INFO", 0, "Token expired, getting a new one!");
-                    var refreshToken = token.getRefreshToken();
-                    var tResp = oAuthClient.requestToken('Spotify', JSON.stringify({ grant_type: "refresh_token", refresh_token: refreshToken }));
-                    token = tResp.getToken();
-                    var tokenGR = new GlideRecord('oauth_credential');
-                    tokenGR.addQuery('oauth_requestor_profile', requestorProf.getValue('sys_id'));
-                    tokenGR.query();
-                    while (tokenGR.next()) {
-                        if (tokenGR.type == 'refresh_token') {
-                            foundTokenTypes.push('refresh_token');
-                            var refreshGDT = new GlideDateTime();
-                            refreshGDT.addSeconds(tokenGR.peer.refresh_token_lifespan + '');
-                            tokenGR.expires = refreshGDT;
-                            tokenGR.token_received.setDisplayValue(token.getAccessToken() + '');
-                            tokenGR.update();
+                    if (this.refreshTokenForSession) {
+                        this._externalUpdateFunc("INFO", 0, "Refresh token: " + this.refreshTokenForSession);
+                        var tResp = oAuthClient.requestToken('Spotify', JSON.stringify({ grant_type: "refresh_token", refresh_token: this.refreshTokenForSession }));
+                        token = tResp.getToken();
+                        var tokenGR = new GlideRecord('oauth_credential');
+                        tokenGR.addQuery('oauth_requestor_profile', requestorProf.getValue('sys_id'));
+                        tokenGR.query();
+                        while (tokenGR.next()) {
+                            if (tokenGR.type == 'refresh_token') {
+                                foundTokenTypes.push('refresh_token');
+                                var refreshGDT = new GlideDateTime();
+                                refreshGDT.addSeconds(tokenGR.peer.refresh_token_lifespan + '');
+                                tokenGR.expires = refreshGDT;
+                                tokenGR.token_received.setDisplayValue(token.getAccessToken() + '');
+                                tokenGR.update();
+                            }
+
+                            if (tokenGR.type == 'access_token') {
+                                foundTokenTypes.push('access_token');
+                                var accessGDT = new GlideDateTime();
+                                accessGDT.addSeconds(token.getExpiresIn() + '');
+                                tokenGR.expires = accessGDT;
+                                tokenGR.token_received.setDisplayValue(token.getAccessToken() + '');
+                                tokenGR.update();
+                            }
                         }
-
-                        if (tokenGR.type == 'access_token') {
-                            foundTokenTypes.push('access_token');
-                            var accessGDT = new GlideDateTime();
-                            accessGDT.addSeconds(token.getExpiresIn() + '');
-                            tokenGR.expires = accessGDT;
-                            tokenGR.token_received.setDisplayValue(token.getAccessToken() + '');
-                            tokenGR.update();
-                        }
+                        accessToken = token.getAccessToken() + '';
+                        this._externalUpdateFunc("INFO", 0, "New access token: " + accessToken);
                     }
-
-                    if (foundTokenTypes.length != 2) {
-                        this._externalUpdateFunc("ERROR", 0, "Attempted to update stored oAuth tokens, but only found: " + foundTokenTypes + " . OAuth Errors may occure, aborting!");
-                    }
-
-                    accessToken = token.getAccessToken() + '';
                 } else if (token) {
                     accessToken = token.getAccessToken();
                 }
@@ -394,19 +444,19 @@ MusicDataGenerator.prototype = {
         }
     },
 
-    type: 'MusicDataGenerator'
+    type: 'MusicDataGenerator_APP'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>nate.anderson</sys_created_by>
         <sys_created_on>2023-03-16 03:59:38</sys_created_on>
         <sys_id>77cffd071b0ea1101272624abc4bcb28</sys_id>
-        <sys_mod_count>87</sys_mod_count>
-        <sys_name>MusicDataGenerator</sys_name>
+        <sys_mod_count>106</sys_mod_count>
+        <sys_name>MusicDataGenerator_APP</sys_name>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
         <sys_update_name>sys_script_include_77cffd071b0ea1101272624abc4bcb28</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-04-24 18:38:17</sys_updated_on>
+        <sys_updated_on>2023-05-04 16:12:33</sys_updated_on>
     </sys_script_include>
 </record_update>
