@@ -12,14 +12,8 @@ MusicDataGenerator_APP.prototype = {
 
     refreshTokenForSession: undefined,
 
-    /**
-     * Yansa logging library
-     * 
-     * @param {x_yala_blog_core.SystemLogHelper} logger Logging library that has already be instantiated. Note: if not provided will kick you out of cumulative mode!
-     * 
-     */
-    initialize: function (logger) {
-        var func = "initialize";
+    initialize: function () {
+        //do nothing
     },
 
     setHaveBeenCancelledCheck: function (func) {
@@ -450,13 +444,13 @@ MusicDataGenerator_APP.prototype = {
         <sys_created_by>nate.anderson</sys_created_by>
         <sys_created_on>2023-03-16 03:59:38</sys_created_on>
         <sys_id>77cffd071b0ea1101272624abc4bcb28</sys_id>
-        <sys_mod_count>106</sys_mod_count>
+        <sys_mod_count>107</sys_mod_count>
         <sys_name>MusicDataGenerator_APP</sys_name>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
         <sys_update_name>sys_script_include_77cffd071b0ea1101272624abc4bcb28</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-05-04 16:12:33</sys_updated_on>
+        <sys_updated_on>2023-05-04 16:43:01</sys_updated_on>
     </sys_script_include>
 </record_update>
