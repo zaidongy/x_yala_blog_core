@@ -126,6 +126,20 @@
             <sys_user/>
             <type/>
         </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>tracks</element>
+            <position>9</position>
+            <sys_created_by>reece.poulsen</sys_created_by>
+            <sys_created_on>2023-04-25 20:51:11</sys_created_on>
+            <sys_id>3de31b2f97522110ce8b358e6253af62</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_playlist" sys_domain="global" view="Default view">38a2b9ab1b0a25101272624abc4bcb59</sys_ui_section>
+            <sys_updated_by>reece.poulsen</sys_updated_by>
+            <sys_updated_on>2023-04-25 20:51:11</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>
             <header>false</header>
