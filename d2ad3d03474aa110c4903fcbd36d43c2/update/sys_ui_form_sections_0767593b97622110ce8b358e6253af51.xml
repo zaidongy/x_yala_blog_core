@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="0767593b97622110ce8b358e6253af51" sys_domain="global" table="x_yala_blog_core_playlist" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>reece.poulsen</sys_created_by>
+            <sys_created_on>2023-05-08 16:41:32</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>4367593b97622110ce8b358e6253af53</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_yala_blog_core_playlist" name="x_yala_blog_core_playlist" sys_domain="global" view="Default view">0767593b97622110ce8b358e6253af51</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_yala_blog_core_playlist" sys_domain="global" view="Default view">38a2b9ab1b0a25101272624abc4bcb59</sys_ui_section>
+            <sys_updated_by>reece.poulsen</sys_updated_by>
+            <sys_updated_on>2023-05-08 16:41:32</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>reece.poulsen</sys_created_by>
+            <sys_created_on>2023-05-08 16:52:14</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>8ce95dfb97622110ce8b358e6253afb9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_yala_blog_core_playlist" name="x_yala_blog_core_playlist" sys_domain="global" view="Default view">0767593b97622110ce8b358e6253af51</sys_ui_form>
+            <sys_ui_section caption="Track List" display_value="Track List" name="x_yala_blog_core_playlist" sys_domain="global" view="Default view">2de5db2397922110ce8b358e6253af60</sys_ui_section>
+            <sys_updated_by>reece.poulsen</sys_updated_by>
+            <sys_updated_on>2023-05-08 16:52:14</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_yala_blog_core_playlist</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>reece.poulsen</sys_created_by>
+            <sys_created_on>2023-05-08 16:41:32</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>0767593b97622110ce8b358e6253af51</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_yala_blog_core_playlist</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+            <sys_update_name>sys_ui_form_sections_0767593b97622110ce8b358e6253af51</sys_update_name>
+            <sys_updated_by>reece.poulsen</sys_updated_by>
+            <sys_updated_on>2023-05-08 16:41:32</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>
