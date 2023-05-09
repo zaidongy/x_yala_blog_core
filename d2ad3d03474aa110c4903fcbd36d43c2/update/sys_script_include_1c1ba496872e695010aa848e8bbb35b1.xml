@@ -9,45 +9,48 @@
         <name>BlackLists</name>
         <script><![CDATA[var BlackLists = Class.create();
 BlackLists.prototype = {
-    initialize: function() {},
+    initialize: function () { },
 
-    //returns an array of sys_ids of tracks that are blacklisted.
-    getTrackIDs: function() {
-		
+    /**
+     * Get the blacklist track IDs.
+     * 
+     * @returns {string[]} an array of sys_id strings of tracks that should be in the black list.
+     */
+    getTrackIDs: function () {
+
         var blackList = [];
-		
-        var eps = new GlideScriptedExtensionPoint().getExtensions("x_yala_blog_core.PlaylistBlacklist");
-		
-		//if we do not have any extensionPoints, return the system property value..
-		
-		if(eps.length == 0){
-			var propIds = gs.getProperty('x_yala_blog_core.track.black_list');
-            if(propIds){
-                blackList = propIds.split(',');
-            }
 
-            return blackList;
-		}
-		
-        //past our return statement, so lets go through all of the extension points, building the list of sys_ids to return
-        //that's right, this will add together all the extension points that "handle" this playlist!
+        //returns an Array of Instantiated Script Includes
+        var extensionPoints = new GlideScriptedExtensionPoint().getExtensions("x_yala_blog_core.PlaylistBlacklist");
 
-        eps.forEach(function(ep, $index) {
-            if (!ep.appliesTo && !ep.getBlacklist) {
-                gs.error('No applies to function and no black list function... please ensure your extension point is setup correctly. Ignoring blacklist for now.');
-            } else if (!ep.appliesTo && ep.getBlacklist) {
-                gs.warn('Did not have an applies to function, so assuming this applies to everything!');
-                eps.length = index + 1;
-            } else if (ep.appliesTo && ep.getBlacklist) {
-                //gs.info('Has applies to!');
-                if (ep.appliesTo(parent)) {
-                    var blackListSysIds = ep.getBlacklist(parent);
-                    if(blackListSysIds && blackListSysIds.length && blackListSysIds.length > 0){
-                        blackList = blackList.concat(blackListSysIds);
+        //Always include our system property in the black list.
+        var propIds = gs.getProperty('x_yala_blog_core.track.black_list');
+        if (propIds) {
+            blackList = propIds.split(',');
+        }
+
+        //If we have extension points, add any that "Apply" to our blacklist.
+        if (extensionPoints.length > 0) {
+
+            //this is an array of Instantiated Script Includes/Classes from your extension point.
+            extensionPoints.forEach(function (extPoint) {
+                if (!extPoint.appliesTo || !extPoint.getBlacklist) {
+                    gs.error('Missing appliesTo function or getBlacklist function... please ensure your extension point is setup correctly. Ignoring this implementation for now.');
+                } else if (ep.appliesTo && ep.getBlacklist) {
+                    
+                    //check to see if this Implementation "applies" and we should get it's blacklist.
+                    if (ep.appliesTo()) {
+                        var blackListSysIds = ep.getBlacklist();
+                        if (Array.isArray(blackListSysIds)) {
+                            blackList = blackList.concat(blackListSysIds);
+                        } else {
+                            gs.error('Returned black list was not an array. Please ensure it is an array of sys_ids. Ignoring blacklist.');
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
+
         return blackList;
     },
 
@@ -57,13 +60,13 @@ BlackLists.prototype = {
         <sys_created_by>nate.anderson</sys_created_by>
         <sys_created_on>2023-05-03 21:37:20</sys_created_on>
         <sys_id>1c1ba496872e695010aa848e8bbb35b1</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>BlackLists</sys_name>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
         <sys_update_name>sys_script_include_1c1ba496872e695010aa848e8bbb35b1</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-05-04 03:18:39</sys_updated_on>
+        <sys_updated_on>2023-05-08 18:39:39</sys_updated_on>
     </sys_script_include>
 </record_update>
