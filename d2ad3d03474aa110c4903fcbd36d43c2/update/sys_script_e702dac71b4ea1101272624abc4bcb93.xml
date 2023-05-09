@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_yala_blog_core_music_loader_job</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="x_yala_blog_core_music_loader_job">stateCHANGESTOqueued^EQ<item display_value="Queued" endquery="false" field="state" goto="false" newquery="false" operator="CHANGESTO" or="false" value="queued"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Execute import!</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+    //NOTE: Other BRs are covering keeping from duplicate imports running..
+
+    current.state = 'in_progress';
+    current.update();
+
+    var loadAll = false;
+
+    try {
+        var mdg = new x_yala_blog_core.MusicDataGenerator();
+        mdg.setExternalUpdaterFunc(updateCurrent);
+        mdg.setHaveBeenCancelledCheck(haveBeenCancelled);
+        var dataToLoad = current.getValue('data_to_load');
+        if (dataToLoad == 'All') {
+            loadAll = true;
+            mdg.loadAll();
+        } else if (dataToLoad == 'Artists') {
+            mdg.loadArtists();
+        } else if (dataToLoad == 'Albums') {
+            mdg.loadAlbums();
+        } else if (dataToLoad == 'Tracks') {
+            mdg.loadSongs();
+        }
+    } catch (e) {
+        current.state = 'error';
+        current.log = JSON.stringify(e);
+        current.update();
+    }
+
+    function haveBeenCancelled() {
+        var answer = "";
+        var record = new GlideRecord(current.getTableName());
+        if (record.get(current.sys_id)) {
+            if(record.state == 'completed' || record.state == 'error' || record.state == 'cancelled' || record.state == "rate_limit_paused"){
+                answer = record.getValue('state');
+            }
+        }
+
+        return answer;
+    }
+
+
+
+    function updateCurrent(type, count, msg) {
+        var record = new GlideRecord(current.getTableName());
+        if (record.get(current.sys_id)) {
+            if (type.indexOf('COMPLETE') > -1) {
+                if ((record.state != 'error' && record.state != 'cancelled') && ((loadAll == false  && record.state != "rate_limit_paused") || (loadAll && type == "LOAD_ALL_COMPLETE"  && record.state != "rate_limit_paused"))) {
+                    record.log = "[" + type + "] " + msg;
+                    record.state = 'completed'
+                    kickOffNextPending();
+                }
+                record.update();
+            } else if (type == "INFO") {
+                record.log = "[INFO] " + msg;
+                record.update();
+            } else if (type == "ERROR") {
+                record.state = 'error';
+                record.log = "[ERROR] An error has occured! Please review system logs. Additional info:\n\n" + msg;
+                record.update();
+            } else if (type == 'ARTIST') {
+                var artistCount = parseInt(record.getValue('artist_count') || 0) + count;
+                record.artist_count = artistCount;
+                record.update();
+            } else if (type == "ALBUM") {
+                var albumCount = parseInt(record.getValue('album_count') || 0) + count;
+                record.album_count = albumCount;
+                record.update();
+            } else if (type == "TRACK") {
+                var trackCount = parseInt(record.getValue('track_count') || 0) + count;
+                record.track_count = trackCount;
+                record.update();
+            } else if (type == "RATE_LIMIT_PAUSE") {
+                var data = JSON.parse(msg);
+                var pausedUntil = new GlideDateTime();
+                pausedUntil.addSeconds(data.retryAfter);
+                record.paused_until = pausedUntil;
+                record.log = msg;
+                record.state = 'rate_limit_paused';
+                record.update();
+                gs.eventQueueScheduled('x_yala_blog_core.queue_paused_loader', record, null, null, pausedUntil);
+            }
+        }
+    }
+
+    function kickOffNextPending(){
+        var records = new GlideRecord(current.getTableName());
+        records.orderBy('number');
+        records.addQuery('sys_id', '!=', current.sys_id);
+        records.addQuery('state', 'pending');
+        records.query();
+        if(records.next()){
+            records.state = 'queued';
+            records.update();
+        }
+
+    }
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-11 16:33:54</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>e702dac71b4ea1101272624abc4bcb93</sys_id>
+        <sys_mod_count>41</sys_mod_count>
+        <sys_name>Execute import!</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>sys_script_e702dac71b4ea1101272624abc4bcb93</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-05-04 03:57:41</sys_updated_on>
+        <template/>
+        <when>async_always</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=e702dac71b4ea1101272624abc4bcb93"/>
+</record_update>

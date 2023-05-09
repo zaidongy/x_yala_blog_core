@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Log" section_id="3b4d0e431b4ea1101272624abc4bcb98" sys_domain="global" table="x_yala_blog_core_music_loader_job" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>log</element>
+            <position>0</position>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:10:13</sys_created_on>
+            <sys_id>1d5d8a831b4ea1101272624abc4bcbfe</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Log" display_value="Log" name="x_yala_blog_core_music_loader_job" sys_domain="global" view="Default view">3b4d0e431b4ea1101272624abc4bcb98</sys_ui_section>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:10:13</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Log</caption>
+            <header>false</header>
+            <name>x_yala_blog_core_music_loader_job</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-11 16:10:06</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>3b4d0e431b4ea1101272624abc4bcb98</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_yala_blog_core_music_loader_job</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+            <sys_update_name>sys_ui_section_3b4d0e431b4ea1101272624abc4bcb98</sys_update_name>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-11 16:10:06</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

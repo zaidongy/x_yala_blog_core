@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <cleared>false</cleared>
+        <disabled>ignore</disabled>
+        <field>artist_count</field>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-24 18:30:03</sys_created_on>
+        <sys_id>f9d9a5d31bda61501272624abc4bcb7d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>artist_count</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>sys_ui_policy_action_f9d9a5d31bda61501272624abc4bcb7d</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-24 18:30:03</sys_updated_on>
+        <table>x_yala_blog_core_music_loader_job</table>
+        <ui_policy display_value="Show Artist Count">248921d31bda61501272624abc4bcb6d</ui_policy>
+        <visible>true</visible>
+    </sys_ui_policy_action>
+</record_update>

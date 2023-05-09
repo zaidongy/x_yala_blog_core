@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_yala_blog_core.BlackLists</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>BlackLists</name>
+        <script><![CDATA[var BlackLists = Class.create();
+BlackLists.prototype = {
+    initialize: function () { },
+
+    /**
+     * Get the blacklist track IDs.
+     * 
+     * @returns {string[]} an array of sys_id strings of tracks that should be in the black list.
+     */
+    getTrackIDs: function () {
+
+        var blackList = [];
+
+        //returns an Array of Instantiated Script Includes
+        var extensionPoints = new GlideScriptedExtensionPoint().getExtensions("x_yala_blog_core.PlaylistBlacklist");
+
+        //Always include our system property in the black list.
+        var propIds = gs.getProperty('x_yala_blog_core.track.black_list');
+        if (propIds) {
+            blackList = propIds.split(',');
+        }
+
+        //If we have extension points, add any that "Apply" to our blacklist.
+        if (extensionPoints.length > 0) {
+
+            //this is an array of Instantiated Script Includes/Classes from your extension point.
+            extensionPoints.forEach(function (extPoint) {
+                if (!extPoint.appliesTo || !extPoint.getBlacklist) {
+                    gs.error('Missing appliesTo function or getBlacklist function... please ensure your extension point is setup correctly. Ignoring this implementation for now.');
+                } else if (ep.appliesTo && ep.getBlacklist) {
+                    
+                    //check to see if this Implementation "applies" and we should get it's blacklist.
+                    if (ep.appliesTo()) {
+                        var blackListSysIds = ep.getBlacklist();
+                        if (Array.isArray(blackListSysIds)) {
+                            blackList = blackList.concat(blackListSysIds);
+                        } else {
+                            gs.error('Returned black list was not an array. Please ensure it is an array of sys_ids. Ignoring blacklist.');
+                        }
+                    }
+                }
+            });
+        }
+
+        return blackList;
+    },
+
+    type: 'BlackLists'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-05-03 21:37:20</sys_created_on>
+        <sys_id>1c1ba496872e695010aa848e8bbb35b1</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>BlackLists</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>sys_script_include_1c1ba496872e695010aa848e8bbb35b1</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-05-08 18:39:39</sys_updated_on>
+    </sys_script_include>
+</record_update>

@@ -14,7 +14,7 @@
         <mobile_title>Songs</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name>x_yala_blog_core_song</name>
-        <order/>
+        <order>230</order>
         <override_menu_roles>false</override_menu_roles>
         <query/>
         <report/>
@@ -25,17 +25,17 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>21df71471b0ea1101272624abc4bcb50</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>Songs</sys_name>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Tracks</sys_name>
         <sys_overrides/>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
         <sys_policy/>
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
         <sys_update_name>sys_app_module_21df71471b0ea1101272624abc4bcb50</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-03-16 02:02:29</sys_updated_on>
+        <sys_updated_on>2023-04-24 15:36:29</sys_updated_on>
         <timeline_page/>
-        <title>Songs</title>
+        <title>Tracks</title>
         <uncancelable>false</uncancelable>
         <view_name/>
         <window_name/>

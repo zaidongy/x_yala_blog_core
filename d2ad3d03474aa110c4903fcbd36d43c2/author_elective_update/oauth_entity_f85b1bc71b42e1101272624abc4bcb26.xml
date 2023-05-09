@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity">
+    <oauth_entity action="DELETE">
+        <access>public</access>
+        <access_token_lifespan>1800</access_token_lifespan>
+        <active>true</active>
+        <auth_code_lifespan>0</auth_code_lifespan>
+        <auth_url>https://accounts.spotify.com/authorize</auth_url>
+        <certificate_url/>
+        <client_id>2e24a766abf74009917c4fd7a2740c69</client_id>
+        <client_secret>﷞﷟﷒e1f3a958db702110bc86027ed39619fe﷬﷔1﷬﷭2evimkNeWE7bSTJCz_BrbQ==1mP5EOfeNcUXaLGAJiffwll0fgZ_-UAiTxCxpE2eEKvpMiOd0D4jud-Fu7LHd9Dp﷮﷯</client_secret>
+        <client_uuid>785b1bc71b42e1101272624abc4bcb26</client_uuid>
+        <code_challenge_method>S256</code_challenge_method>
+        <comments>This is a default app registry. You will need to populate it with your Client ID / Client Secret, and redirect URL. &#13;
+&#13;
+For reference the redirect url should be: https://YOUR_INSTANCE_NAME.service-now.com/oauth_redirect.do&#13;
+</comments>
+        <default_grant_type>authorization_code</default_grant_type>
+        <id_token_lifespan>0</id_token_lifespan>
+        <logo_url/>
+        <message_signature_lifespan>0</message_signature_lifespan>
+        <name>Spotify</name>
+        <oauth_api_script/>
+        <protocol_name/>
+        <public_client>false</public_client>
+        <redirect_url>https://ven01806.service-now.com/oauth_redirect.do</redirect_url>
+        <refresh_token_lifespan>8640000</refresh_token_lifespan>
+        <refresh_token_url/>
+        <restricted_binding>false</restricted_binding>
+        <revoke_token_url/>
+        <salt>0</salt>
+        <send_client_credentials_as>request_body_parameter</send_client_credentials_as>
+        <skip_authorize>false</skip_authorize>
+        <sys_class_name>oauth_entity</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-11 21:52:49</sys_created_on>
+        <sys_id>f85b1bc71b42e1101272624abc4bcb26</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>Spotify</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>oauth_entity_f85b1bc71b42e1101272624abc4bcb26</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-18 16:05:36</sys_updated_on>
+        <token_url>https://accounts.spotify.com/api/token</token_url>
+        <type>oauth_provider</type>
+        <use_mutual_auth>false</use_mutual_auth>
+        <user/>
+    </oauth_entity>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</application>
+        <file_path/>
+        <instance_id>a511f549db16a200439ed70fbf9619eb</instance_id>
+        <instance_name>ven01806</instance_name>
+        <name>oauth_entity_f85b1bc71b42e1101272624abc4bcb26</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity"><oauth_entity action="INSERT_OR_UPDATE"><access>public</access><access_token_lifespan>1800</access_token_lifespan><active>true</active><auth_code_lifespan>0</auth_code_lifespan><auth_url>https://accounts.spotify.com/authorize</auth_url><certificate_url/><client_id>2e24a766abf74009917c4fd7a2740c69</client_id><client_secret>﷞﷟﷒e1f3a958db702110bc86027ed39619fe﷬﷔1﷬﷭2evimkNeWE7bSTJCz_BrbQ==1mP5EOfeNcUXaLGAJiffwll0fgZ_-UAiTxCxpE2eEKvpMiOd0D4jud-Fu7LHd9Dp﷮﷯</client_secret><client_uuid>785b1bc71b42e1101272624abc4bcb26</client_uuid><code_challenge_method>S256</code_challenge_method><comments>This is a default app registry. You will need to populate it with your Client ID / Client Secret, and redirect URL. &#13;
+&#13;
+For reference the redirect url should be: https://YOUR_INSTANCE_NAME.service-now.com/oauth_redirect.do&#13;
+</comments><default_grant_type>authorization_code</default_grant_type><id_token_lifespan>0</id_token_lifespan><logo_url/><message_signature_lifespan>0</message_signature_lifespan><name>Spotify</name><oauth_api_script/><protocol_name/><public_client>false</public_client><redirect_url>https://ven01806.service-now.com/oauth_redirect.do</redirect_url><refresh_token_lifespan>8640000</refresh_token_lifespan><refresh_token_url/><restricted_binding>false</restricted_binding><revoke_token_url/><salt>0</salt><send_client_credentials_as>request_body_parameter</send_client_credentials_as><skip_authorize>false</skip_authorize><sys_class_name>oauth_entity</sys_class_name><sys_created_by>nate.anderson</sys_created_by><sys_created_on>2023-04-11 21:52:49</sys_created_on><sys_id>f85b1bc71b42e1101272624abc4bcb26</sys_id><sys_mod_count>11</sys_mod_count><sys_name>Spotify</sys_name><sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package><sys_policy/><sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope><sys_update_name>oauth_entity_f85b1bc71b42e1101272624abc4bcb26</sys_update_name><sys_updated_by>nate.anderson</sys_updated_by><sys_updated_on>2023-04-18 16:05:36</sys_updated_on><token_url>https://accounts.spotify.com/api/token</token_url><type>oauth_provider</type><use_mutual_auth>false</use_mutual_auth><user/></oauth_entity></record_update>]]></payload>
+        <payload_hash>1730213663</payload_hash>
+        <record_name>Spotify</record_name>
+        <reverted_from/>
+        <source>debe1dff1be2a1101272624abc4bcb07</source>
+        <source_table>sys_update_set</source_table>
+        <state>current</state>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-05-08 17:13:25</sys_created_on>
+        <sys_id>96be1dff1be2a1101272624abc4bcb21</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>187fc5a8c3a0000001</sys_recorded_at>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-05-08 17:13:25</sys_updated_on>
+        <type>Application Registries</type>
+        <update_guid>ce6f8251805ea910a8da7983802a1f51</update_guid>
+        <update_guid_history>ce6f8251805ea910a8da7983802a1f51:1730213663,c3ae59ff9be2a110434a72e7e6934dea:0,ce6f8251805ea910a8da7983802a1f51:1730213663,a09e0611915ea9106e811a914d06eeba:-1598599088,dd7e82112c5ea910556924059dd48270:-644662417,cd5e8addfe1ea910f8c7752c473311b6:1285059934,cbbd42dd771ea9101c77f806552dddc4:302122094,adad02dd271ea9106b027812f4826f97:-1835342388,787d8a9d411ea9100a7ad38824782129:-1247777456,4b5dca9d4f1ea910dc58191058ed113b:1137003102,cfc44a950d1ea91063d71f77608e2141:1137003102,cfc44a950d1ea91063d71f77608e2141:1137003102,1fb44a95d71ea9109d2d04da4e65bc72:-1247777456,93c30295d71ea910b03989d258909359:1137003102,58f9847757ca251072b5dfadb6338511:-1247777456,c0cb9fc74d42e110eef918212f3b9353:305350034</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Spotify">0b73834c1bf6e1101272624abc4bcb93</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-05-09 19:12:08</sys_created_on>
+        <sys_db_object display_value="" name="oauth_entity">oauth_entity</sys_db_object>
+        <sys_id>0056a1c709584482a0fb7de638f9dfb9</sys_id>
+        <sys_metadata>f85b1bc71b42e1101272624abc4bcb26</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Spotify</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_scope_delete display_value="">0a4c715f42a64ff68a6d3423dffa9864</sys_scope_delete>
+        <sys_update_name>oauth_entity_f85b1bc71b42e1101272624abc4bcb26</sys_update_name>
+        <sys_update_version display_value="oauth_entity_f85b1bc71b42e1101272624abc4bcb26">96be1dff1be2a1101272624abc4bcb21</sys_update_version>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-05-09 19:12:08</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

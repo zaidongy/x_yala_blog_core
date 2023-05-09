@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_extension_instance">
+    <sys_ui_extension_instance action="DELETE">
+        <active>true</active>
+        <order>100</order>
+        <point>global.KMArticleViewFooter</point>
+        <sys_class_name>sys_ui_extension_instance</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-12 13:34:59</sys_created_on>
+        <sys_id>1d63329f1b4ee1101272624abc4bcb48</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>global.KMArticleViewFooter</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>sys_ui_extension_instance_1d63329f1b4ee1101272624abc4bcb48</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-12 13:34:59</sys_updated_on>
+        <ui_macro/>
+    </sys_ui_extension_instance>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</application>
+        <file_path/>
+        <instance_id>a511f549db16a200439ed70fbf9619eb</instance_id>
+        <instance_name>ven01806</instance_name>
+        <name>sys_ui_extension_instance_1d63329f1b4ee1101272624abc4bcb48</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_extension_instance"><sys_ui_extension_instance action="INSERT_OR_UPDATE"><active>true</active><order>100</order><point>global.KMArticleViewFooter</point><sys_class_name>sys_ui_extension_instance</sys_class_name><sys_created_by>nate.anderson</sys_created_by><sys_created_on>2023-04-12 13:34:59</sys_created_on><sys_id>1d63329f1b4ee1101272624abc4bcb48</sys_id><sys_mod_count>0</sys_mod_count><sys_name>global.KMArticleViewFooter</sys_name><sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package><sys_policy/><sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope><sys_update_name>sys_ui_extension_instance_1d63329f1b4ee1101272624abc4bcb48</sys_update_name><sys_updated_by>nate.anderson</sys_updated_by><sys_updated_on>2023-04-12 13:34:59</sys_updated_on><ui_macro/></sys_ui_extension_instance></record_update>]]></payload>
+        <payload_hash>1339398774</payload_hash>
+        <record_name>global.KMArticleViewFooter</record_name>
+        <reverted_from/>
+        <source>88fff9071b0ea1101272624abc4bcb2f</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-12 13:35:04</sys_created_on>
+        <sys_id>6663329f1b4ee1101272624abc4bcbfb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18775ad4e4e0000001</sys_recorded_at>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-12 13:35:04</sys_updated_on>
+        <type>UI Extension Instance</type>
+        <update_guid>5963329ff34ee1107eb03ff03efebb4a</update_guid>
+        <update_guid_history>5963329ff34ee1107eb03ff03efebb4a:938610929,5963329ff34ee1107eb03ff03efebb4a:938610929</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-12 13:36:16</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_extension_instance">sys_ui_extension_instance</sys_db_object>
+        <sys_id>1f731c8ce4054fcc9ecf82a77d6e4a10</sys_id>
+        <sys_metadata>1d63329f1b4ee1101272624abc4bcb48</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>global.KMArticleViewFooter</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_scope_delete display_value="">0a4c715f42a64ff68a6d3423dffa9864</sys_scope_delete>
+        <sys_update_name>sys_ui_extension_instance_1d63329f1b4ee1101272624abc4bcb48</sys_update_name>
+        <sys_update_version display_value="sys_ui_extension_instance_1d63329f1b4ee1101272624abc4bcb48">6663329f1b4ee1101272624abc4bcbfb</sys_update_version>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-12 13:36:16</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
