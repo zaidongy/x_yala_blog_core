@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_extension_instance">
+    <sys_extension_instance action="DELETE">
+        <active>true</active>
+        <order>100</order>
+        <point>x_yala_blog_core.PlaylistBlacklist</point>
+        <script_include/>
+        <sys_class_name>sys_extension_instance</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-13 19:48:34</sys_created_on>
+        <sys_id>5f72d5f387ce251010aa848e8bbb3547</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_yala_blog_core.PlaylistBlacklist</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>sys_extension_instance_5f72d5f387ce251010aa848e8bbb3547</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-13 19:48:34</sys_updated_on>
+    </sys_extension_instance>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</application>
+        <file_path/>
+        <instance_id>a511f549db16a200439ed70fbf9619eb</instance_id>
+        <instance_name>ven01806</instance_name>
+        <name>sys_extension_instance_5f72d5f387ce251010aa848e8bbb3547</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_extension_instance"><sys_extension_instance action="INSERT_OR_UPDATE"><active>true</active><order>100</order><point>x_yala_blog_core.PlaylistBlacklist</point><script_include/><sys_class_name>sys_extension_instance</sys_class_name><sys_created_by>nate.anderson</sys_created_by><sys_created_on>2023-04-13 19:48:34</sys_created_on><sys_id>5f72d5f387ce251010aa848e8bbb3547</sys_id><sys_mod_count>0</sys_mod_count><sys_name>x_yala_blog_core.PlaylistBlacklist</sys_name><sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package><sys_policy/><sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope><sys_update_name>sys_extension_instance_5f72d5f387ce251010aa848e8bbb3547</sys_update_name><sys_updated_by>nate.anderson</sys_updated_by><sys_updated_on>2023-04-13 19:48:34</sys_updated_on></sys_extension_instance></record_update>]]></payload>
+        <payload_hash>215871773</payload_hash>
+        <record_name>x_yala_blog_core.PlaylistBlacklist</record_name>
+        <reverted_from/>
+        <source>88fff9071b0ea1101272624abc4bcb2f</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-18 15:59:41</sys_created_on>
+        <sys_id>df0ecadd1b1ea9101272624abc4bcb50</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1879517db6d0000001</sys_recorded_at>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-18 15:59:41</sys_updated_on>
+        <type>Extension Instance</type>
+        <update_guid>9b72d5f368ce25108966e64a1a2b7f49</update_guid>
+        <update_guid_history>9b72d5f368ce25108966e64a1a2b7f49:868577622,9b72d5f368ce25108966e64a1a2b7f49:868577622</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-18 15:59:44</sys_created_on>
+        <sys_db_object display_value="" name="sys_extension_instance">sys_extension_instance</sys_db_object>
+        <sys_id>8a0d15f63825498a9cd95014b7bc4f84</sys_id>
+        <sys_metadata>5f72d5f387ce251010aa848e8bbb3547</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_yala_blog_core.PlaylistBlacklist</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_scope_delete display_value="">0a4c715f42a64ff68a6d3423dffa9864</sys_scope_delete>
+        <sys_update_name>sys_extension_instance_5f72d5f387ce251010aa848e8bbb3547</sys_update_name>
+        <sys_update_version display_value="sys_extension_instance_5f72d5f387ce251010aa848e8bbb3547">df0ecadd1b1ea9101272624abc4bcb50</sys_update_version>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-18 15:59:44</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity_profile">
+    <oauth_entity_profile action="DELETE">
+        <default>true</default>
+        <grant_type>authorization_code</grant_type>
+        <jwt_provider/>
+        <name>Spotify default_profile</name>
+        <oauth_entity display_value="Spotify">58dffd071b0ea1101272624abc4bcbc8</oauth_entity>
+        <sys_class_name>oauth_entity_profile</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-03-16 02:17:12</sys_created_on>
+        <sys_id>40dffd071b0ea1101272624abc4bcb81</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Spotify default_profile</sys_name>
+        <sys_package display_value="Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>oauth_entity_profile_40dffd071b0ea1101272624abc4bcb81</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-03-16 02:17:12</sys_updated_on>
+    </oauth_entity_profile>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</application>
+        <file_path/>
+        <instance_id>a511f549db16a200439ed70fbf9619eb</instance_id>
+        <instance_name>ven01806</instance_name>
+        <name>oauth_entity_profile_40dffd071b0ea1101272624abc4bcb81</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity_profile"><oauth_entity_profile action="INSERT_OR_UPDATE"><default>true</default><grant_type>authorization_code</grant_type><jwt_provider/><name>Spotify default_profile</name><oauth_entity display_value="Spotify">58dffd071b0ea1101272624abc4bcbc8</oauth_entity><sys_class_name>oauth_entity_profile</sys_class_name><sys_created_by>nate.anderson</sys_created_by><sys_created_on>2023-03-16 02:17:12</sys_created_on><sys_id>40dffd071b0ea1101272624abc4bcb81</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Spotify default_profile</sys_name><sys_package display_value="Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package><sys_policy/><sys_scope display_value="Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope><sys_update_name>oauth_entity_profile_40dffd071b0ea1101272624abc4bcb81</sys_update_name><sys_updated_by>nate.anderson</sys_updated_by><sys_updated_on>2023-03-16 02:17:12</sys_updated_on></oauth_entity_profile></record_update>]]></payload>
+        <payload_hash>-1538761921</payload_hash>
+        <record_name>Spotify default_profile</record_name>
+        <reverted_from/>
+        <source>4aeff1471b0ea1101272624abc4bcbe0</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-11 15:11:42</sys_created_on>
+        <sys_id>dcff75471b0ea1101272624abc4bcbcc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18770df69de0000001</sys_recorded_at>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-11 15:11:42</sys_updated_on>
+        <type>OAuth Entity Profile</type>
+        <update_guid>9cff7547aa0ea1100932f4fad7475dcc</update_guid>
+        <update_guid_history>9cff7547aa0ea1100932f4fad7475dcc:-1538761921</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Spotify default_profile">43788e491b9e69101272624abc4bcbb1</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-17 20:56:53</sys_created_on>
+        <sys_db_object display_value="" name="oauth_entity_profile">oauth_entity_profile</sys_db_object>
+        <sys_id>2e8dd0e56d9b453c8c0b902f55b0cfa4</sys_id>
+        <sys_metadata>40dffd071b0ea1101272624abc4bcb81</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Spotify default_profile</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_scope_delete display_value="">0a4c715f42a64ff68a6d3423dffa9864</sys_scope_delete>
+        <sys_update_name>oauth_entity_profile_40dffd071b0ea1101272624abc4bcb81</sys_update_name>
+        <sys_update_version display_value="oauth_entity_profile_40dffd071b0ea1101272624abc4bcb81">dcff75471b0ea1101272624abc4bcbcc</sys_update_version>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-04-17 20:56:53</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

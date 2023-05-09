@@ -2,36 +2,70 @@
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>package_private</access>
         <active>true</active>
-        <api_name>x_yala_blog_core.MusicDataGenerator</api_name>
+        <api_name>x_yala_blog_core.MusicDataGenerator_APP</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description/>
-        <name>MusicDataGenerator</name>
-        <script><![CDATA[var MusicDataGenerator = Class.create();
-MusicDataGenerator.prototype = {
+        <description>Script include for making API Calls to spotify to generate Artist, Album, and Track Data</description>
+        <name>MusicDataGenerator_APP</name>
+        <script><![CDATA[var MusicDataGenerator_APP = Class.create();
+MusicDataGenerator_APP.prototype = {
 
-    /**
-     * Yansa logging library
-     * 
-     * @param {x_yala_blog_core.SystemLogHelper} logger Logging library that has already be instantiated. Note: if not provided will kick you out of cumulative mode!
-     * 
-     */
-    initialize: function (logger) {
-        var func = "initialize";
+    refreshTokenForSession: undefined,
+
+    initialize: function () {
+        //do nothing
+    },
+
+    setHaveBeenCancelledCheck: function (func) {
+        if (func) {
+            this._haveBeenCancelledCheck = func;
+        } else {
+            this._haveBeenCancelledCheck = function () {
+                return false;
+            };
+        }
 
     },
 
-    loadSongs: function(){
+    haveBeenCancelledCheck: function () {
+        return this._haveBeenCancelledCheck();
+    },
+
+    /**
+     * 
+     * @param {} aFunction A function that is called with the inputs of the "type" and Count being updated
+     */
+    setExternalUpdaterFunc: function (aFunction) {
+        this._externalUpdateFunc = aFunction;
+    },
+
+    loadAll: function () {
+        this._externalUpdateFunc("INFO", 0, "Started loading all")
+        this.loadArtists();
+        this.loadAlbums();
+        this.loadSongs();
+        this._externalUpdateFunc("LOAD_ALL_COMPLETE", 0, "Fininshed loading all")
+    },
+
+    loadSongs: function (forceRefresh) {
 
         var albums = new GlideRecord('x_yala_blog_core_album');
+        if (!forceRefresh) {
+            albums.addQuery('tracks_loaded', false);
+        }
         albums.query();
-        while(albums.next()){
+        while (albums.next()) {
+            var cancelledResult = this._haveBeenCancelledCheck()
+            if (cancelledResult) {
+                this._externalUpdateFunc("INFO", 0, "LOADER WAS " + cancelledResult + " ! ABORTING!");
+                break;
+            }
             var tracks = this.getAllTracks(albums.getValue('correlation_id'));
-            tracks.forEach(function(track){
-                var songsGR = new GlideRecord('x_yala_blog_core_songs');
+            tracks.forEach(function (track) {
+                var songsGR = new GlideRecord('x_yala_blog_core_song');
                 songsGR.addQuery('correlation_id', track.id);
                 songsGR.query();
-                if(songsGR.next()){
+                if (songsGR.next()) {
                     songsGR.name = track.name;
                     songsGR.correlation_id = track.id;
                     songsGR.duration = new GlideDuration(track.duration_ms);
@@ -45,14 +79,32 @@ MusicDataGenerator.prototype = {
                     songsGR.album = albums.getValue('sys_id');
                     songsGR.insert();
                 }
-            })
+            });
+            this._externalUpdateFunc("TRACK", tracks.length);
+            albums.tracks_loaded = true;
+            albums.update();
         }
+
+        this._externalUpdateFunc("COMPLETE", 0, "Completed loading tracks for all albums.");
+
 
     },
 
-    getAllTracks: function(albumId, nextURL, items){
-        if(!items){
+    /**
+     * 
+     * @param {string} albumId The id of the album
+     * @param {string} nextURL The url containing more tracks
+     * @param {any[]} items The accumulator of tracks
+     * @returns {any[]}
+     */
+    getAllTracks: function (albumId, nextURL, items) {
+        if (!items) {
             items = [];
+        }
+
+        var cancelledResult = this._haveBeenCancelledCheck()
+        if (cancelledResult) {
+            return items;
         }
 
         var rMsg = new sn_ws.RESTMessageV2();
@@ -69,53 +121,94 @@ MusicDataGenerator.prototype = {
         var resp = rMsg.execute();
         var status = resp.getStatusCode();
         if (status != 200) {
-            gs.error('ERROR!\n' + resp.getBody());
+            if(status == 404){
+                var body = resp.getBody();
+                var logError = true;
+                if(body){
+                    var bodyObj = JSON.parse(body);
+                    if(bodyObj.message.indexOf('Non existing id:') === -1){
+                        logError = false;
+                    }
+                }
+                if(logError){
+                    this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), headers: resp.getHeaders() }));
+                }
+            } else if (status == 429 || status == 500) {
+                var retryAfter = resp.getHeader('Retry-After') || 20;
+                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: retryAfter }));
+            } else {
+                this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), headers: resp.getHeaders() }));
+            }
             return items;
         } else {
             var resData = JSON.parse(resp.getBody());
             var returnedItems = resData.items;
-            returnedItems.forEach(function(item){
-                items.push({name:item.name, id:item.id,duration_ms:item.duration_ms});
+            returnedItems.forEach(function (item) {
+                items.push({ name: item.name, id: item.id, duration_ms: item.duration_ms });
             });
-            
+
             //if (resData.next) {
-              //  return this.getAllAlbums(artistId, resData.next, items);
+            //  return this.getAllAlbums(artistId, resData.next, items);
             //} else {
-                return items;
+            return items;
             //}
         }
     },
 
-    loadAlbums: function(){
+    loadAlbums: function (forceRefresh) {
 
         var artists = new GlideRecord('x_yala_blog_core_artist');
+        if (!forceRefresh) {
+            artists.addEncodedQuery('albums_last_refreshedISEMPTY');
+        }
         artists.query();
-        while(artists.next()){
+        while (artists.next()) {
+            var cancelledResult = this._haveBeenCancelledCheck()
+            if (cancelledResult) {
+                this._externalUpdateFunc("INFO", 0, "LOADER WAS " + cancelledResult + " ! ABORTING!");
+                break;
+            }
             var albums = this.getAllAlbums(artists.getValue('correlation_id'));
-            albums.forEach(function(album){
+            albums.forEach(function (album) {
                 var albumGR = new GlideRecord('x_yala_blog_core_album');
                 albumGR.addQuery('correlation_id', album.id);
                 albumGR.query();
-                if(!albumGR.hasNext()){
+                if (!albumGR.hasNext()) {
                     albumGR.newRecord();
                     albumGR.name = album.name;
                     albumGR.correlation_id = album.id;
                     albumGR.artist = artists.getValue('sys_id')
                     albumGR.insert();
-                } else if(albumGR.next()){
+                } else if (albumGR.next()) {
                     albumGR.name = album.name;
                     albumGR.correlation_id = album.id;
                     albumGR.artist = artists.getValue('sys_id')
                     albumGR.update();
                 }
-            })
+            });
+            artists.albums_last_refreshed = new GlideDateTime();
+            artists.update();
+            this._externalUpdateFunc("ALBUM", albums.length)
         }
+        this._externalUpdateFunc("COMPLETE", 0, "Completed loading Albums for all Artists.");
 
     },
 
-    getAllAlbums: function(artistId, nextURL, items){
-        if(!items){
+    /**
+     * 
+     * @param {string} artistId The artist identifier
+     * @param {string} nextURL The next URL that has more albums
+     * @param {any[]} items The album item
+     * @returns {any[]}
+     */
+    getAllAlbums: function (artistId, nextURL, items) {
+
+        if (!items) {
             items = [];
+        }
+        var cancelledResult = this._haveBeenCancelledCheck()
+        if (cancelledResult) {
+            return items;
         }
 
         var rMsg = new sn_ws.RESTMessageV2();
@@ -132,52 +225,88 @@ MusicDataGenerator.prototype = {
         var resp = rMsg.execute();
         var status = resp.getStatusCode();
         if (status != 200) {
-            gs.error('ERROR!\n' + resp.getBody());
+            if(status == 404){
+                var body = resp.getBody();
+                var logError = true;
+                if(body){
+                    var bodyObj = JSON.parse(body);
+                    if(bodyObj.message.indexOf('Non existing id:') === -1){
+                        logError = false;
+                    }
+                }
+                if(logError){
+                    this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), headers: resp.getHeaders() }));
+                }
+            } else if (status == 429 || status == 500) {
+                var retryAfter = resp.getHeader('Retry-After') || 20;
+                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: retryAfter }));
+            } else {
+                this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), headers: resp.getHeaders() }));
+            }
             return items;
         } else {
             var resData = JSON.parse(resp.getBody());
             var returnedItems = resData.items;
-            returnedItems.forEach(function(item){
-                items.push({name:item.name, id:item.id, type:item.type});
+            returnedItems.forEach(function (item) {
+                items.push({ name: item.name, id: item.id, type: item.type });
             });
-            
-            //if (resData.next) {
-              //  return this.getAllAlbums(artistId, resData.next, items);
-            //} else {
-                return items;
-            //}
+
+            return items;
+
         }
 
     },
 
 
-    loadArtists: function(){
+    loadArtists: function () {
+        this._externalUpdateFunc("INFO", 0, "Started loading Artists");
         var maxCharacters = 26;
-        
-        for(var i = 0; i < maxCharacters; i++){
+
+        for (var i = 0; i < maxCharacters; i++) {
             var character = (i + 10).toString(36);
+            var cancelledResult = this._haveBeenCancelledCheck()
+            if (cancelledResult) {
+                this._externalUpdateFunc("INFO", 0, "LOADER WAS " + cancelledResult + " ! ABORTING!");
+                break;
+            }
             var artists = this.searchToMaxAmount(character, 'artist');
-            artists.forEach(function(artist){
+
+            artists.forEach(function (artist) {
                 var artistGR = new GlideRecord('x_yala_blog_core_artist');
                 artistGR.addQuery('correlation_id', artist.id);
                 artistGR.query();
-                if(!artistGR.next()){
+                if (!artistGR.hasNext()) {
                     artistGR.newRecord();
                     artistGR.name = artist.name;
                     artistGR.correlation_id = artist.id;
                     artistGR.insert();
+                } else if (artistGR.next()) {
+                    artistGR.name = artist.name;
+                    artistGR.correlation_id = artist.id;
+                    artistGR.update();
                 }
-            })
+            });
+
+            this._externalUpdateFunc("ARTIST", artists.length);
         }
+        this._externalUpdateFunc("COMPLETE", 0, "Finished Loading all Artists.");
 
     },
 
+    /**
+     * 
+     * @param {string} searchText The text to search
+     * @param {string} type The type of thing we are searching
+     * @returns {any[]}
+     */
     searchToMaxAmount: function (searchText, type) {
-        if(!searchText){
+        if (!searchText) {
             throw new Error('No search text provided!');
         }
+        if (!this._haveBeenCancelledCheck()) {
+            var items = this.getSearchResults([], searchText, type);
+        }
 
-        var items = this.getSearchResults([], searchText, type);
 
         return items;
 
@@ -198,17 +327,23 @@ MusicDataGenerator.prototype = {
         var resp = rMsg.execute();
         var status = resp.getStatusCode();
         if (status != 200) {
-            gs.error('ERROR!\n' + resp.getBody());
+
+            if (status == 429 || status == 500) {
+                var retryAfter = resp.getHeader('Retry-After') || 20;
+                this._externalUpdateFunc("RATE_LIMIT_PAUSE", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), retryAfter: retryAfter }));
+            } else {
+                this._externalUpdateFunc("ERROR", 0, JSON.stringify({ statusCode: resp.getStatusCode(), body: resp.getBody(), headers: resp.getHeaders() }));
+            }
             return items;
         } else {
             var resData = JSON.parse(resp.getBody());
-            var returnedItems = resData[type +'s'].items;
-            returnedItems.forEach(function(item){
-                items.push({name:item.name, id:item.id, type:type});
+            var returnedItems = resData[type + 's'].items;
+            returnedItems.forEach(function (item) {
+                items.push({ name: item.name, id: item.id, type: type });
             });
-            
-            if (resData[type +'s'].next) {
-                return this.getSearchResults(items, searchText, type, resData[type +'s'].next)
+
+            if (resData[type + 's'].next) {
+                return this.getSearchResults(items, searchText, type, resData[type + 's'].next)
             } else {
                 return items;
             }
@@ -217,56 +352,105 @@ MusicDataGenerator.prototype = {
 
 
 
-    getAccessToken: function(){
-        var oAuthClient = new sn_auth.GlideOAuthClient();
-        var token = oAuthClient.getToken('f44691228721651010aa848e8bbb355b', '40dffd071b0ea1101272624abc4bcb81');
-        var expiresIn = token.getExpiresIn();
-        gs.info('token expires in: ' + expiresIn);
-        if(expiresIn === 0){
-            var refreshToken = token.getRefreshToken();
-            var tResp = oAuthClient.requestToken('Spotify', JSON.stringify({grant_type:"refresh_token", refresh_token:refreshToken}));
-            token = tResp.getToken();
-            var tokenGR = new GlideRecord('oauth_credential');
-            tokenGR.addQuery('peer', '58dffd071b0ea1101272624abc4bcbc8');
-            tokenGR.query();
-            while(tokenGR.next()){
-                if(tokenGR.type == 'refresh_token'){
-                    var refreshGDT = new GlideDateTime();
-                    refreshGDT.addSeconds(tokenGR.peer.refresh_token_lifespan);
-                    tokenGR.expires = refreshGDT;
-                    tokenGR.setDisplayValue('token_received', token.getAccessToken() + "");
-                    tokenGR.update();
+    getAccessToken: function () {
+        var accessToken = ''
+        try {
+            var foundTokenTypes = [];
+            var requestorProf = new GlideRecord('oauth_requestor_profile');
+            requestorProf.addQuery('oauth_entity_profile.oauth_entity.auth_url', 'https://accounts.spotify.com/authorize');
+            requestorProf.addQuery('oauth_entity_profile.oauth_entity.active', true);
+            requestorProf.query();
+            if (requestorProf.next()) {
+                gs.info('Found requestor profile: ' + requestorProf.getUniqueValue());
+                var oAuthClient = new sn_auth.GlideOAuthClient();
+
+                var token = oAuthClient.getToken(requestorProf.getValue('requestor_id'), requestorProf.getValue('oauth_entity_profile'));
+                this.refreshTokenForSession = this.refreshTokenForSession || token.getRefreshToken();
+
+
+
+                var expiresIn = token.getExpiresIn();
+                //if expiring in the next 60 seconds, get a new one.
+                if (expiresIn <= 60) {
+
+                    this._externalUpdateFunc("INFO", 0, "Token expired, getting a new one!");
+                    if (this.refreshTokenForSession) {
+                        this._externalUpdateFunc("INFO", 0, "Refresh token: " + this.refreshTokenForSession);
+                        var tResp = oAuthClient.requestToken('Spotify', JSON.stringify({ grant_type: "refresh_token", refresh_token: this.refreshTokenForSession }));
+                        token = tResp.getToken();
+                        var tokenGR = new GlideRecord('oauth_credential');
+                        tokenGR.addQuery('oauth_requestor_profile', requestorProf.getValue('sys_id'));
+                        tokenGR.query();
+                        while (tokenGR.next()) {
+                            if (tokenGR.type == 'refresh_token') {
+                                foundTokenTypes.push('refresh_token');
+                                var refreshGDT = new GlideDateTime();
+                                refreshGDT.addSeconds(tokenGR.peer.refresh_token_lifespan + '');
+                                tokenGR.expires = refreshGDT;
+                                tokenGR.token_received.setDisplayValue(token.getAccessToken() + '');
+                                tokenGR.update();
+                            }
+
+                            if (tokenGR.type == 'access_token') {
+                                foundTokenTypes.push('access_token');
+                                var accessGDT = new GlideDateTime();
+                                accessGDT.addSeconds(token.getExpiresIn() + '');
+                                tokenGR.expires = accessGDT;
+                                tokenGR.token_received.setDisplayValue(token.getAccessToken() + '');
+                                tokenGR.update();
+                            }
+                        }
+                        accessToken = token.getAccessToken() + '';
+                        this._externalUpdateFunc("INFO", 0, "New access token: " + accessToken);
+                    }
+                } else if (token) {
+                    accessToken = token.getAccessToken();
                 }
 
-                if(tokenGR.type == 'access_token'){
-                    var accessGDT = new GlideDateTime();
-                    accessGDT.addSeconds(token.getExpiresIn());
-                    tokenGR.expires = accessGDT;
-                    tokenGR.setDisplayValue('token_received', token.getAccessToken() + "");
-                    tokenGR.update();
-                }
             }
+
+        } catch (e) {
+            this._externalUpdateFunc("ERROR", 0, JSON.stringify(e));
         }
-
-
-
-        return token.getAccessToken();
+        return accessToken;
     },
 
+    //just store what types were called and not sent, and so we don't trigger it over and over gain
 
-    type: 'MusicDataGenerator'
+    _externalUpdateFuncWarningSent: [],
+
+    //stup in a default function for havebennCancelled so we don't throw errors
+    _haveBeenCancelledCheck: function () {
+    },
+
+    /**
+     * 
+     * @param {"ARTIST" | "ALBUM" | "TRACK" |"ERROR" | "INFO" | "COMPLETE" | "LOAD_ALL_COMPLETE" | "RATE_LIMIT_PAUSE"} type the type of item being broadcast
+     * @param {number} count 
+     * @param {string} msg the message sent along mostly used for errors.
+     */
+    _externalUpdateFunc: function (type, count, msg) {
+        //this is where you can set / update your GlideRecord, or do other things...
+        //types will be "ARTIST" | "ALBUM" | "TRACK"
+        if (this._externalUpdateFuncWarningSent.indexOf(type) == -1) {
+            this._externalUpdateFuncWarningSent.push(type)
+            gs.warn('External updater func called with default, which does nothing. Consider passing in an updater func. Types that have triggered this: ' + this._externalUpdateFuncWarningSent + '. Recent msg was: ' + msg);
+        }
+    },
+
+    type: 'MusicDataGenerator_APP'
 };]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>nate.anderson</sys_created_by>
         <sys_created_on>2023-03-16 03:59:38</sys_created_on>
         <sys_id>77cffd071b0ea1101272624abc4bcb28</sys_id>
-        <sys_mod_count>30</sys_mod_count>
-        <sys_name>MusicDataGenerator</sys_name>
+        <sys_mod_count>107</sys_mod_count>
+        <sys_name>MusicDataGenerator_APP</sys_name>
         <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
         <sys_update_name>sys_script_include_77cffd071b0ea1101272624abc4bcb28</sys_update_name>
         <sys_updated_by>nate.anderson</sys_updated_by>
-        <sys_updated_on>2023-03-16 16:37:15</sys_updated_on>
+        <sys_updated_on>2023-05-04 16:43:01</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_relationship">
+    <sys_relationship action="INSERT_OR_UPDATE">
+        <advanced>false</advanced>
+        <apply_to/>
+        <basic_apply_to>x_yala_blog_core_playlist</basic_apply_to>
+        <basic_query_from>x_yala_blog_core_song</basic_query_from>
+        <insert_callback/>
+        <name>Songs</name>
+        <query_from/>
+        <query_with><![CDATA[(function refineQuery(current, parent) {
+
+    //determine and build the query of the related list.
+
+    var addBlackList = false;
+
+    if (parent.type == 'Criteria') {
+        current.addQuery(parent.conditions);
+        addBlackList = true;
+    } else if (parent.type == 'Scripted') {
+        var gse = new GlideScopedEvaluator();
+        gse.putVariable('current', current);
+        gse.evaluateScript(parent, 'track_script');
+        current = gse.getVariable('current');
+        addBlackList = true;
+    } else {
+        current.addQuery('sys_id', 'NULL');
+    }
+
+    //not efficient, but further reduce the list based on the blacklist of track sys_ids provided back from the extension point..
+
+    if(addBlackList){
+        var blackListSysIds = new BlackLists().getTrackIDs();
+
+        if (blackListSysIds.length && blackListSysIds.length > 0) {
+            //gs.info('query before mod: ' + current.getEncodedQuery());
+            var currQueryParts = current.getEncodedQuery().split('^NQ');
+            var finalQueryParts = [];
+            currQueryParts.forEach(function (part) {
+                //rebuild the query using the query determined above
+                finalQueryParts.push('sys_idNOT IN' + blackListSysIds + '^' + part);
+            });
+    
+            current.initialize(); //clears whatever the "query filter" is up to this point.
+            current.addEncodedQuery(finalQueryParts.join('^NQ'));
+        }
+    }
+
+})(current, parent);]]></query_with>
+        <reference_field/>
+        <related_list/>
+        <simple_reference>false</simple_reference>
+        <sys_class_name>sys_relationship</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-13 03:39:59</sys_created_on>
+        <sys_id>bb94f16f1b0a25101272624abc4bcbf2</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>Songs</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>sys_relationship_bb94f16f1b0a25101272624abc4bcbf2</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-05-03 21:57:58</sys_updated_on>
+    </sys_relationship>
+    <sys_translated_text action="delete_multiple" query="documentkey=bb94f16f1b0a25101272624abc4bcbf2"/>
+</record_update>

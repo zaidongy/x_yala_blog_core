@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="Artist" max_length="40" name="x_yala_blog_core_artist" type="collection">
+    <element label="Artist" max_length="40" name="x_yala_blog_core_artist" sizeclass="17535" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Albums last refreshed" max_length="40" name="albums_last_refreshed" type="glide_date_time"/>
         <element label="id" max_length="250" name="correlation_id" type="string"/>
         <element label="Name" max_length="250" name="name" type="string"/>
     </element>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_extension_point">
+    <sys_extension_point action="INSERT_OR_UPDATE">
+        <api_name>x_yala_blog_core.PlaylistBlacklist</api_name>
+        <description>This script extension point gets called whenever a song is added to a playlist and denies adding it to that playlist if the song sysID is in the list returned by the blacklist.&#13;
+It will also filter these tracks from playlists that have Conditional or Scripted Types.</description>
+        <example><![CDATA[var PlaylistBlacklist = Class.create();
+PlaylistBlacklist.prototype = {
+    initialize: function() {
+    },
+	
+	appliesTo: function(){
+		//Does this extension point (after you create an implementation) apply and should we run the getBlacklist method?
+		return true;
+	},
+
+    getBlacklist: function() {
+		//A list of track sys_ids to exclude when querying the tracks table.
+        var songSysIds = [];
+		return songSysIds;
+    },
+
+    type: 'PlaylistBlacklist'
+};]]></example>
+        <name>PlaylistBlacklist</name>
+        <restrict_scope>false</restrict_scope>
+        <sys_class_name>sys_extension_point</sys_class_name>
+        <sys_created_by>nate.anderson</sys_created_by>
+        <sys_created_on>2023-04-13 03:50:15</sys_created_on>
+        <sys_id>fce6b9ef1b0a25101272624abc4bcb14</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>PlaylistBlacklist</sys_name>
+        <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+        <sys_update_name>sys_extension_point_fce6b9ef1b0a25101272624abc4bcb14</sys_update_name>
+        <sys_updated_by>nate.anderson</sys_updated_by>
+        <sys_updated_on>2023-05-09 18:24:28</sys_updated_on>
+    </sys_extension_point>
+</record_update>

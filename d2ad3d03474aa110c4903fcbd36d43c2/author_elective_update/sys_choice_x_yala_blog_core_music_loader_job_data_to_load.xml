@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="data_to_load" table="x_yala_blog_core_music_loader_job" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>data_to_load</element>
+            <name>x_yala_blog_core_music_loader_job</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-12 18:51:37</sys_created_on>
+            <sys_id>13db3bdf1b4225101272624abc4bcb7c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>data_to_load</sys_name>
+            <sys_package display_value="Yansa Blog - CORE" source="x_yala_blog_core">d2ad3d03474aa110c4903fcbd36d43c2</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Yansa Blog - CORE">d2ad3d03474aa110c4903fcbd36d43c2</sys_scope>
+            <sys_update_name>sys_choice_x_yala_blog_core_music_loader_job_data_to_load</sys_update_name>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-12 18:51:37</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>data_to_load</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>All</label>
+            <language>en</language>
+            <name>x_yala_blog_core_music_loader_job</name>
+            <sequence>0</sequence>
+            <synonyms/>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-12 18:51:37</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>9bdb3bdf1b4225101272624abc4bcb7b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-12 18:51:37</sys_updated_on>
+            <value>All</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>data_to_load</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Artists</label>
+            <language>en</language>
+            <name>x_yala_blog_core_music_loader_job</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-12 18:51:37</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d7db3bdf1b4225101272624abc4bcb7d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-12 18:51:37</sys_updated_on>
+            <value>Artists</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>data_to_load</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Albums</label>
+            <language>en</language>
+            <name>x_yala_blog_core_music_loader_job</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-12 18:51:37</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>97db3bdf1b4225101272624abc4bcb7e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-12 18:51:37</sys_updated_on>
+            <value>Albums</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>data_to_load</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Tracks</label>
+            <language>en</language>
+            <name>x_yala_blog_core_music_loader_job</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>nate.anderson</sys_created_by>
+            <sys_created_on>2023-04-12 18:51:37</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>57db3bdf1b4225101272624abc4bcb7f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>nate.anderson</sys_updated_by>
+            <sys_updated_on>2023-04-12 18:51:37</sys_updated_on>
+            <value>Tracks</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>
